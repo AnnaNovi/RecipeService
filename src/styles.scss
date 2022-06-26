@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  font-family: 'Courier New', Courier, monospace;
+}
+body {
+  max-width: 1940px;
+  margin: 0 auto;
+  background: rgba($color: #a2c523, $alpha: 0.3);
+}
