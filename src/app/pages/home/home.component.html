@@ -1,1 +1,7 @@
-<p>home works!</p>
+<section class="recipeRandomSection">
+  <app-recipe-card
+    *ngFor="let recipe of recipesPreviewList"
+    [imageUrl]="recipe.imageURL"
+    [title]="recipe.title"
+  ></app-recipe-card>
+</section>

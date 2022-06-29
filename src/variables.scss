@@ -1,0 +1,39 @@
+$DARK_GREEN: #2e4600;
+$GREEN: #486b00;
+$LIGHT_GREEN: #a2c523;
+$BROWN: #7d4427;
+
+@mixin appPadding {
+  padding-right: 156px;
+  padding-left: 156px;
+
+  @media (max-width: 1440px) {
+    padding-right: 120px;
+      padding-left: 120px;
+  }
+
+  @media (max-width: 1200px) {
+    padding-right: 80px;
+    padding-left: 80px;
+  }
+
+  @media (max-width: 768px) {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+
+  @media (max-width: 576px) {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  @media (max-width: 450px) {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  @media (max-width: 375px) {
+    padding-right: 11px;
+    padding-left: 11px;
+  }
+}

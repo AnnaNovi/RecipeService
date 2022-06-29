@@ -7,6 +7,7 @@ import { RecipeComponent } from './pages/recipe/recipe.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: HomeComponent
   },
   {
