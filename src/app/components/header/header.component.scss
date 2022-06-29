@@ -1,21 +1,30 @@
-.headerNavigation {
-  background: #486B00;
+@import '~/src/variables.scss';
+
+.header {
+  background: $GREEN;
   padding: 55px 0 35px;
-}
-.navigation {
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 32px;
-  letter-spacing: 0.1em;
-  display: grid;
-  column-gap: 45px;
-  grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
-  align-items: center;
-  justify-content: center;
-  a {
-    color: white;
+
+  &__navigation {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: 0.1em;
+    display: grid;
+    column-gap: 45px;
+    grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
+    align-items: center;
+    justify-content: center;
   }
-  svg {
+
+  &__link {
+    color: white;
+    text-decoration: none;
+    &.active {
+      text-decoration: underline;
+    }
+  }
+
+  &__logo {
     fill: white;
   }
 }
