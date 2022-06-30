@@ -23,6 +23,6 @@ export class HomeComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.repeatService.quantity(this.getData.bind(this), 6);
+    this.repeatService.quantity(this.getData.bind(this), 8);
   }
 }

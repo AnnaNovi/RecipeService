@@ -19,6 +19,7 @@
   &__link {
     color: white;
     text-decoration: none;
+    text-transform: uppercase;
     &.active {
       text-decoration: underline;
     }
@@ -26,5 +27,11 @@
 
   &__logo {
     fill: white;
+    width: 60px;
+    height: 60px;
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 10px;
+    box-sizing: content-box;
   }
 }
