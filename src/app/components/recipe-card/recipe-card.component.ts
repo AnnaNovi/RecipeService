@@ -6,8 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./recipe-card.component.scss'],
 })
 export class RecipeCardComponent implements OnInit {
-  @Input() title = '';
-  @Input() imageUrl = '';
+  @Input() title: string = '';
+  @Input() imageUrl: string = '';
+  @Input() tags: string[] | null = [];
 
   constructor() {}
 

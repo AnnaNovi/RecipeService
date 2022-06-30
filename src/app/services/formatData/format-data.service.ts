@@ -16,12 +16,12 @@ export class FormatDataService {
   ): recipePreview {
     const ingredientsArray = new Map();
 
-    const tags = recipe.strTags?.split(',');
+    const tags = (recipe.strTags) ? recipe.strTags.split(',') : null;
 
     const shortType = {
       id: recipe.idMeal,
       title: recipe.strMeal,
-      tags: tags ? tags : null,
+      tags: tags,
       imageURL: recipe.strMealThumb,
     };
     const fullType = {

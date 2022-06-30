@@ -3,5 +3,9 @@
     *ngFor="let recipe of recipesPreviewList"
     [imageUrl]="recipe.imageURL"
     [title]="recipe.title"
+    [tags]="recipe.tags"
   ></app-recipe-card>
 </section>
+<div class="toCatalogBlock">
+  <button class="toCatalogBlock__button">Перейти в каталог</button>
+</div>
