@@ -10,7 +10,9 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
 
 import { HomeComponent } from './pages/home/home.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
-import { FooterComponent } from './components/footer/footer.component'
+import { FooterComponent } from './components/footer/footer.component';
+import { PageNotFoundComponent } from './pages/pageNotFound/page-not-found/page-not-found.component';
+import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/page-under-consrtruction/page-under-consrtruction.component'
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { FooterComponent } from './components/footer/footer.component'
     HomeComponent,
     RecipeComponent,
     FooterComponent,
+    PageNotFoundComponent,
+    PageUnderConsrtructionComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],

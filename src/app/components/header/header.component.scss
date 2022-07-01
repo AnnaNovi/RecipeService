@@ -15,12 +15,21 @@
     grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
     align-items: center;
     justify-content: center;
+    @media (max-width: 1200px) {
+      font-size: 25px;
+      line-height: 28px;
+    }
   }
 
   &__link {
     color: white;
     text-decoration: none;
     text-transform: uppercase;
+    transition: 0.5s;
+    &:hover:not(.active) {
+      transition: 0.5s;
+      color: $BLACK;
+    }
     &.active {
       text-decoration: underline;
     }
@@ -34,5 +43,9 @@
     border-radius: 50%;
     padding: 10px;
     box-sizing: content-box;
+    @media (max-width: 1200px) {
+      width: 50px;
+      height: 50px;
+    }
   }
 }

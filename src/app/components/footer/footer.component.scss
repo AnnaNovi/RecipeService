@@ -16,14 +16,34 @@
     letter-spacing: 0.2em;
     color: white;
     text-transform: uppercase;
+    transition: 0.5s;
+    &:hover {
+      transition: 0.5s;
+      color: $BLACK;
+    }
+    @media (max-width: 992px) {
+      font-size: 24px;
+      line-height: 25px;
+    }
+    @media (max-width: 576px) {
+      font-size: 20px;
+      line-height: 21px;
+    }
   }
 
   &__navigation {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     row-gap: 10px;
     margin-top: 20px;
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 576px) {
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 5px;
+    }
   }
 
   &__link {
@@ -31,5 +51,19 @@
     font-size: 20px;
     line-height: 22px;
     color: white;
+    transition: 0.3s;
+    &:hover {
+      transition: 0.5s;
+      font-weight: 600;
+      color: $BLACK;
+    }
+    @media (max-width: 992px) {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    @media (max-width: 576px) {
+      font-size: 14px;
+      line-height: 18px;
+    }
   }
 }
