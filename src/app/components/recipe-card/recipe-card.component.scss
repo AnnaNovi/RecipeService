@@ -54,11 +54,11 @@
     padding: 6px;
     border-radius: 5px;
     background: rgba($color: #2c7873, $alpha: 0.5);
-    color: #021c1e;
+    color: $BLACK;
     font-size: 15px;
     font-weight: 700;
     svg {
-      fill: #021c1e;
+      fill: $BLACK;
       width: 18px;
       height: 18px;
       margin-right: 3px;

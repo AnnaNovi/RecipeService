@@ -21,3 +21,12 @@ app-root {
   grid-template-rows: min-content auto min-content;
   height: 100vh;
 }
+app-page-not-found, app-page-under-consrtruction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+app-page-under-consrtruction {
+  flex-direction: column;
+}

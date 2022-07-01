@@ -1,0 +1,30 @@
+@import '~/src/variables.scss';
+
+.pageNotFoundTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 52px;
+  color: $GREEN;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+  }
+  @media (max-width: 576px) {
+    font-size: 30px;
+  }
+}
+.pageNotFoundError {
+  font-weight: 700;
+  font-size: 20em;
+  color: $BROWN;
+  opacity: 0.1;
+  position: absolute;
+  @media (max-width: 768px) {
+    font-size: 16em;
+  }
+  @media (max-width: 576px) {
+    font-size: 12em;
+  }
+}
