@@ -13,6 +13,11 @@ body {
   margin: 0 auto;
   background: rgba($color: #a2c523, $alpha: 0.3);
 }
-section {
+header, main, footer {
   @include appPadding;
+}
+app-root {
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  height: 100vh;
 }
