@@ -8,7 +8,7 @@ import {
   recipeResponseData,
   recipePreview,
 } from 'src/app/models';
-import { FormatDataService } from '../formatData/format-data.service';
+import { FormatDataService } from '../formatRecipeData/format-recipe-data.service';
 
 @Injectable({
   providedIn: 'root',

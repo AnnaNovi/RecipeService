@@ -1,2 +1,18 @@
-<p>footer works!</p>
-<!-- Categories -->
+<footer class="footer">
+  <div class="footer__title">
+    <a
+      class="footer__titleLink"
+      routerLink="categories"
+    >
+      Categories
+    </a>
+  </div>
+  <div class="footer__navigation">
+    <a
+      *ngFor="let category of categoriesList"
+      [routerLink]="'recipe/' + category.title"
+      class="footer__link"
+      >{{ category.title }}</a
+    >
+  </div>
+</footer>
