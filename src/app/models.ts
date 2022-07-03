@@ -1,4 +1,4 @@
-//for interfaces
+//interfaces
 export interface recipeResponse {
   meals: recipeResponseData[];
 }
@@ -58,14 +58,10 @@ export interface recipeResponseData {
   strTags: null | string;
   strYoutube: string;
 }
-export interface recipe {
-  id: string;
-  title: string;
+export interface recipe extends recipePreview {
   category: string;
-  instruction: Map<number, string>;
+  instruction: string;
   ingredients: Map<string, string>;
-  tags: string[] | null;
-  imageURL: string;
   videoURL: string;
   source: string;
 }
@@ -75,7 +71,6 @@ export interface recipePreview {
   tags: string[] | null;
   imageURL: string;
 }
-
 export interface categoriesResponse {
   categories: categoriesResponseData[];
 }

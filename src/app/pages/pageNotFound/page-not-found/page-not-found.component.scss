@@ -1,5 +1,11 @@
 @import '~/src/variables.scss';
 
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
 .pageNotFoundTitle {
   text-align: center;
   font-weight: 700;

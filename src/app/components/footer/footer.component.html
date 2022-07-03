@@ -10,7 +10,7 @@
   <div class="footer__navigation">
     <a
       *ngFor="let category of categoriesList"
-      [routerLink]="'recipe/' + category.title"
+      [routerLink]="'recipes/' + category.title | lowercase"
       class="footer__link"
       >{{ category.title }}</a
     >
