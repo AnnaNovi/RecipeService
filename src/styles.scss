@@ -11,22 +11,8 @@
 body {
   max-width: 1940px;
   margin: 0 auto;
-  background: rgba($color: #a2c523, $alpha: 0.3);
+  background: rgba($color: #a2c523, $alpha: 0.2);
 }
 header, main, footer {
   @include appPadding;
-}
-app-root {
-  display: grid;
-  grid-template-rows: min-content auto min-content;
-  height: 100vh;
-}
-app-page-not-found, app-page-under-consrtruction {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70%;
-}
-app-page-under-consrtruction {
-  flex-direction: column;
 }

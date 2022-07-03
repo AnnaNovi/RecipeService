@@ -1,8 +1,12 @@
-<section class="recipeRandomSection">
+<section
+  *ngIf="recipesPreviewList | async as recipesPreviewList"
+  class="recipeRandomSection"
+>
   <app-recipe-card
     *ngFor="let recipe of recipesPreviewList"
-    [imageUrl]="recipe.imageURL"
+    [id]="recipe.id"
     [title]="recipe.title"
+    [imageUrl]="recipe.imageURL"
     [tags]="recipe.tags"
   ></app-recipe-card>
 </section>

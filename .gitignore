@@ -2,6 +2,7 @@
 
 # Compiled output
 /dist
+/index.html
 /tmp
 /out-tsc
 /bazel-out

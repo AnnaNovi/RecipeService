@@ -3,7 +3,13 @@
     <img [src]="imageUrl + '/preview'" alt="Smoked Haddock Kedgeree Image">
   </div>
   <div class="recipeCard__title">
-    {{ title }}
+    <a
+      [routerLink]="'recipe/' + id"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      class="recipeCard__link"
+      >{{ title }}</a
+    >
   </div>
   <div
     class="recipeCard__tagsList"

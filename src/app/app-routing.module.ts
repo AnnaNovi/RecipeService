@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/pageNotFound/page-not-found/page-not-found.component';
 import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/page-under-consrtruction/page-under-consrtruction.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
+import { RecipesListComponent } from './pages/recipesList/recipes-list/recipes-list.component';
 
 const routes: Routes = [
   {
@@ -13,16 +14,20 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'recipe',
-    component: RecipeComponent,
+    path: 'recipes',
+    component: PageUnderConsrtructionComponent,
+  },
+  {
+    path: 'recipes/:category',
+    component: PageUnderConsrtructionComponent,
   },
   {
     path: 'categories',
     component: PageUnderConsrtructionComponent,
   },
   {
-    path: 'recipe/:category',
-    component: PageUnderConsrtructionComponent,
+    path: 'recipe/:id',
+    component: RecipeComponent,
   },
   {
     path: '**',

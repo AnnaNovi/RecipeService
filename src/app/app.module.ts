@@ -12,7 +12,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageNotFoundComponent } from './pages/pageNotFound/page-not-found/page-not-found.component';
-import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/page-under-consrtruction/page-under-consrtruction.component'
+import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/page-under-consrtruction/page-under-consrtruction.component';
+import { RecipesListComponent } from './pages/recipesList/recipes-list/recipes-list.component';
+import { VideoPipe } from './pipes/video/video.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/p
     FooterComponent,
     PageNotFoundComponent,
     PageUnderConsrtructionComponent,
+    RecipesListComponent,
+    VideoPipe,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
