@@ -1,0 +1,14 @@
+<select name="type" id="type" (change)="changeActiveType($event)" >
+  <option value="category" defaultSelected>Category</option>
+  <option value="area">Area</option>
+  <option value="ingredient">Ingredient</option>
+</select>
+<span>:</span>
+<select name="category" id="category">
+  <option value="" [defaultSelected]="true" disabled>Choose {{ activeType.getValue() }}</option>
+  <option
+    *ngFor="let item of filterResultList$ | async | async as filterResultList"
+    [value]="item.title">{{ item.title }}
+  </option>
+</select>
+

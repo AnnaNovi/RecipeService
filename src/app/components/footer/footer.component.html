@@ -7,7 +7,7 @@
       Categories
     </a>
   </div>
-  <div class="footer__navigation">
+  <div class="footer__navigation" *ngIf="categoriesList$ | async as categoriesList">
     <a
       *ngFor="let category of categoriesList"
       [routerLink]="'recipes/' + category.title | lowercase"

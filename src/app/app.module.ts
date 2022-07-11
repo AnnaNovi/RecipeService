@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +17,7 @@ import { PageNotFoundComponent } from './pages/pageNotFound/page-not-found/page-
 import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/page-under-consrtruction/page-under-consrtruction.component';
 import { RecipesListComponent } from './pages/recipesList/recipes-list/recipes-list.component';
 import { VideoPipe } from './pipes/video/video.pipe';
+import { FilterPanelComponent } from './components/filter-panel/filter-panel/filter-panel.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +31,9 @@ import { VideoPipe } from './pipes/video/video.pipe';
     PageUnderConsrtructionComponent,
     RecipesListComponent,
     VideoPipe,
+    FilterPanelComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

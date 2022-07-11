@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { categories } from 'src/app/models';
+import {BehaviorSubject} from 'rxjs'
 
 @Component({
   selector: 'app-footer',
@@ -8,11 +9,10 @@ import { categories } from 'src/app/models';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  categoriesList: categories[] = [];
+  categoriesList$: BehaviorSubject<categories[]> =
+    this.categoriesService.getCategories$();
 
   constructor(private categoriesService: CategoriesService) {}
 
-  ngOnInit(): void {
-    this.categoriesService.getCategories(this.categoriesList);
-  }
+  ngOnInit(): void {}
 }
