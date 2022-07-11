@@ -1,4 +1,4 @@
-//interfaces
+//RECIPE
 export interface recipeResponse {
   meals: recipeResponseData[];
 }
@@ -71,6 +71,14 @@ export interface recipePreview {
   tags: string[] | null;
   imageURL: string;
 }
+
+//CATEGORY
+export interface categoriesNamesResponse {
+  meals: categoriesNamesResponseData[];
+}
+export interface categoriesNamesResponseData {
+  strCategory: string
+}
 export interface categoriesResponse {
   categories: categoriesResponseData[];
 }
@@ -85,4 +93,30 @@ export interface categories {
   title: string;
   imageURL: string;
   description: string;
+}
+
+//AREA
+export interface areasNamesResponse {
+  meals: areasNamesResponseData[];
+}
+export interface areasNamesResponseData {
+  strArea: string;
+}
+export interface areas {
+  title: string;
+}
+//INGREDIENT
+export interface ingredientsNamesResponse {
+  meals: ingredientsNamesResponseData[];
+}
+export interface ingredientsNamesResponseData {
+  idIngredient: string;
+  strIngredient: string;
+  strDescription: string | null;
+  strType: string | null;
+}
+export interface ingredients {
+  id: string;
+  title: string;
+  description: string | null;
 }

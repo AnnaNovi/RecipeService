@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'recipes',
-    component: PageUnderConsrtructionComponent,
+    component: RecipesListComponent,
   },
   {
     path: 'recipes/:category',
