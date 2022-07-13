@@ -1,6 +1,6 @@
 <section class="recipe" *ngIf="recipe | async as recipe">
   <div class="image">
-    <img [src]="recipe.imageURL" alt="">
+    <app-recipe-image [imageUrl]="recipe.imageURL" [title]="recipe.title"></app-recipe-image>
   </div>
   <div class="titleBlock">
     <h1 class="titleBlock__title">{{ recipe.title }}</h1>
@@ -10,7 +10,6 @@
     <div
       class="titleBlock__tagsList"
       *ngIf="!!recipe.tags"
-      [style.marginTop.px]="15"
     >
       <span
         class="titleBlock__tag"
@@ -21,7 +20,7 @@
     </div>
   </div>
   <div class="descriptionBlock" [ngSwitch]="descriptionView">
-    <div class="descriptionBlock__buttinsBlock">
+    <div class="descriptionBlock__buttonsBlock">
       <button
         (click)="handleButton($event)"
         [ngClass]="{'descriptionBlock__button': true, 'active': activeButton('Ingredients')}"
@@ -38,14 +37,14 @@
     <ng-template [ngSwitchCase]="'ingredients'">
       <ul class="ingredient">
         <li *ngFor="let ingredient of recipe.ingredients | keyvalue">
-          <span class="ingredient__key">{{ ingredient.key }}</span>
+          <span class="ingredient__key"><b>{{ ingredient.key }}</b></span>
           <span> – </span>
           <span class="ingredient__value">{{ ingredient.value }}</span>
         </li>
       </ul>
     </ng-template>
     <ng-template [ngSwitchCase]="'instructions'">
-      <p>{{ recipe.instruction }}</p>
+      <p class="instructions">{{ recipe.instruction }}</p>
     </ng-template>
     <ng-template [ngSwitchCase]="'video'">
       <div

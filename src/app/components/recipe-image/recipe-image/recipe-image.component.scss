@@ -1,0 +1,9 @@
+img {
+  width: 100%;
+  filter: blur(3px);
+
+  &.isLoaded {
+    filter: blur(0);
+    transition: filter 0.5s linear;
+  }
+}
