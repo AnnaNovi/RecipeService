@@ -1,3 +1,10 @@
-<section>
-  <app-filter-panel></app-filter-panel>
+<app-filter-panel></app-filter-panel>
+<section class="recileList" *ngIf="recipesPreviewList$ | async as recipesPreviewList">
+  <app-recipe-card
+    *ngFor="let recipe of recipesPreviewList"
+    [id]="recipe.id"
+    [title]="recipe.title"
+    [imageUrl]="recipe.imageURL"
+    [tags]="recipe.tags"
+  ></app-recipe-card>
 </section>

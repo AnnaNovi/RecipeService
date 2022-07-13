@@ -18,6 +18,7 @@ import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/p
 import { RecipesListComponent } from './pages/recipesList/recipes-list/recipes-list.component';
 import { VideoPipe } from './pipes/video/video.pipe';
 import { FilterPanelComponent } from './components/filter-panel/filter-panel/filter-panel.component';
+import { RecipeImageComponent } from './components/recipe-image/recipe-image/recipe-image.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FilterPanelComponent } from './components/filter-panel/filter-panel/fil
     RecipesListComponent,
     VideoPipe,
     FilterPanelComponent,
+    RecipeImageComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],

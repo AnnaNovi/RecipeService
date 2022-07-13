@@ -38,3 +38,29 @@ $BLACK: #021c1e;
     padding-left: 11px;
   }
 }
+
+@mixin recipeSection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 32px;
+  row-gap: 32px;
+  justify-content: center;
+  justify-items: stretch;
+  align-items: stretch;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 24px;
+    row-gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 18px;
+    row-gap: 18px;
+  }
+
+  @media (max-width: 450px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
