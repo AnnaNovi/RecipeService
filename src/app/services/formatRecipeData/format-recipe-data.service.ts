@@ -6,7 +6,6 @@ import { recipeResponseData, recipePreview, recipe } from 'src/app/models';
   providedIn: 'root',
 })
 export class FormatDataService {
-  private ingredientsArray = new Map();
 
   formatShort(recipe: recipeResponseData): recipePreview {
     const tags = recipe.strTags ? recipe.strTags.split(',') : null;
@@ -19,6 +18,7 @@ export class FormatDataService {
     return shortType;
   }
   formatFull(recipe: recipeResponseData): recipe {
+    const ingredientsArray = new Map();
     const tags = recipe.strTags ? recipe.strTags.split(',') : null;
     const fullType: recipe = {
       id: recipe.idMeal,
@@ -27,7 +27,7 @@ export class FormatDataService {
       imageURL: recipe.strMealThumb,
       category: recipe.strCategory,
       instruction: recipe.strInstructions,
-      ingredients: this.ingredientsArray,
+      ingredients: ingredientsArray,
       videoURL: recipe.strYoutube,
       source: recipe.strSource,
     };
@@ -35,7 +35,7 @@ export class FormatDataService {
       const ingredient = `strIngredient${i}`;
       const measure = `strMeasure${i}`;
       if (recipe[ingredient]?.trim() || recipe[measure]?.trim()) {
-        this.ingredientsArray.set(recipe[ingredient], recipe[measure]);
+        ingredientsArray.set(recipe[ingredient], recipe[measure]);
       }
     }
     return fullType;

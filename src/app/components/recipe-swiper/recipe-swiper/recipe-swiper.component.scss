@@ -1,0 +1,17 @@
+@import "~swiper/css";
+@import "~swiper/css/pagination";
+@import "~swiper/css/navigation";
+
+app-recipe-swiper {
+  display: grid;
+}
+.swiper {
+  padding: 20px 40px 40px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: rgba($color: #2c7873, $alpha: 1);
+}
+.swiper-pagination-bullet {
+  background: rgba($color: #2c7873, $alpha: 1);
+}

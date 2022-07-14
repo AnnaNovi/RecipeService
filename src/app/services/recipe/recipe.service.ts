@@ -1,6 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, repeat, toArray, isEmpty, BehaviorSubject, tap } from 'rxjs';
+import {
+  Observable,
+  map,
+  repeat,
+  toArray,
+  BehaviorSubject,
+  take,
+  from,
+  mergeMap,
+} from 'rxjs';
 import { environment as env } from 'src/environments/environment.prod';
 
 import {
@@ -8,6 +17,8 @@ import {
   recipeResponseData,
   recipePreview,
   recipe,
+  recipeByCategoryResponse,
+  recipeByCategoryResponseData,
 } from 'src/app/models';
 import { FormatDataService } from '../formatRecipeData/format-recipe-data.service';
 
@@ -16,6 +27,7 @@ import { FormatDataService } from '../formatRecipeData/format-recipe-data.servic
 })
 export class RecipeService {
   private recipesPreviewList: BehaviorSubject<any> = new BehaviorSubject([]);
+  private recipesSimilarList: BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(
     private http: HttpClient,
@@ -27,6 +39,11 @@ export class RecipeService {
   }
   private getRecipeByIdAPI(id: string | null): Observable<recipeResponse> {
     return this.http.get<any>(`${env.BASE_URL}/lookup.php?i=${id}`);
+  }
+  private getRecipeByCategoryAPI(
+    category: string | null
+  ): Observable<recipeByCategoryResponse> {
+    return this.http.get<any>(`${env.BASE_URL}/filter.php?c=${category}`);
   }
 
   private getRandomRecipe(): Observable<recipePreview> {
@@ -57,9 +74,38 @@ export class RecipeService {
       map((response: recipeResponse): recipeResponseData => {
         return response.meals[0];
       }),
-      map((recipeArray: recipeResponseData) => {
-        return this.formatData.formatFull(recipeArray);
+      map((recipe: recipeResponseData) => {
+        return this.formatData.formatFull(recipe);
       })
     );
   }
+
+  getSimilarRecipesList(
+    quantity: number,
+    category: string
+  ): BehaviorSubject<recipe[]> {
+    if (!this.recipesSimilarList.getValue().length) {
+      this.getRecipeByCategoryAPI(category)
+        .pipe(
+          map((response: recipeByCategoryResponse): any => {
+            return from(response.meals)
+              .pipe(
+                take(quantity),
+                mergeMap(
+                  (
+                    recipe: recipeByCategoryResponseData
+                  ): Observable<recipe> => {
+                    return this.getRecipeById(recipe.idMeal);
+                  }
+                ),
+                toArray()
+              )
+              .subscribe((recipe: recipe[]) => this.recipesSimilarList.next(recipe));
+          }),
+        )
+        .subscribe()
+    }
+    return this.recipesSimilarList;
+  }
+
 }
