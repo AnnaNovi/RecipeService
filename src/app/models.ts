@@ -72,6 +72,16 @@ export interface recipePreview {
   imageURL: string;
 }
 
+//RECIPE BY CATEGORY
+export interface recipeByCategoryResponse {
+  meals: recipeByCategoryResponseData[];
+}
+export interface recipeByCategoryResponseData {
+  idMeal: string;
+  strMeal: string;
+  strMealThumb: string;
+}
+
 //CATEGORY
 export interface categoriesNamesResponse {
   meals: categoriesNamesResponseData[];

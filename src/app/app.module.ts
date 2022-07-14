@@ -3,7 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+
+import { SwiperModule } from 'swiper/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,7 @@ import { RecipesListComponent } from './pages/recipesList/recipes-list/recipes-l
 import { VideoPipe } from './pipes/video/video.pipe';
 import { FilterPanelComponent } from './components/filter-panel/filter-panel/filter-panel.component';
 import { RecipeImageComponent } from './components/recipe-image/recipe-image/recipe-image.component';
+import { RecipeSwiperComponent } from './components/recipe-swiper/recipe-swiper/recipe-swiper.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +37,15 @@ import { RecipeImageComponent } from './components/recipe-image/recipe-image/rec
     VideoPipe,
     FilterPanelComponent,
     RecipeImageComponent,
+    RecipeSwiperComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    SwiperModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

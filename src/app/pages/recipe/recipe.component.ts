@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe/recipe.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Observable, switchMap, map, filter } from 'rxjs'
+import { Observable, map, switchMap } from 'rxjs'
 
 import { recipe } from 'src/app/models';
 
@@ -31,5 +31,6 @@ export class RecipeComponent {
   }
   activeButton(type: string) {
     return type.toLowerCase() === this.descriptionView;
-  };
+  }
+
 }
