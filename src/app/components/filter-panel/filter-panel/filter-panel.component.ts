@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { FilterCombineService } from 'src/app/services/filter-combine/filter-combine.service';
 
 import { categories } from 'src/app/models';
@@ -11,10 +11,12 @@ import { categories } from 'src/app/models';
 })
 export class FilterPanelComponent {
   activeType = new BehaviorSubject('category');
-  filterResultList$: Observable<BehaviorSubject<categories[]>> = this.activeType.pipe(
-    map((type: string) => this.filterCombineService.getFilterByType(type))
-  )
-    /* this.filterCombineService.getFilterByType(this.activeType.getValue()); */
+  filterResultList$: Observable<categories[]> =
+    this.activeType.pipe(
+      switchMap((type: string) =>
+        this.filterCombineService.getFilterByType(type)
+      )
+    );
 
   constructor(private filterCombineService: FilterCombineService) {}
 

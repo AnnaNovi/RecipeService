@@ -9,6 +9,7 @@ import {
   take,
   from,
   mergeMap,
+  switchMap,
 } from 'rxjs';
 import { environment as env } from 'src/environments/environment.prod';
 
@@ -48,12 +49,11 @@ export class RecipeService {
 
   private getRandomRecipe(): Observable<recipePreview> {
     return this.getRandomRecipeAPI().pipe(
-      map((response: recipeResponse): recipePreview => {
-        const recipes = response.meals;
-        const recipeArray = recipes.map((item: recipeResponseData) => {
-          return this.formatData.formatShort(item);
-        });
-        return { ...recipeArray[0] };
+      switchMap((response: recipeResponse): Observable<recipeResponseData> => {
+        return from(response.meals);
+      }),
+      map((recipe: recipeResponseData) => {
+        return this.formatData.formatShort(recipe);
       })
     );
   }
@@ -100,12 +100,13 @@ export class RecipeService {
                 ),
                 toArray()
               )
-              .subscribe((recipe: recipe[]) => this.recipesSimilarList.next(recipe));
-          }),
+              .subscribe((recipe: recipe[]) =>
+                this.recipesSimilarList.next(recipe)
+              );
+          })
         )
-        .subscribe()
+        .subscribe();
     }
     return this.recipesSimilarList;
   }
-
 }

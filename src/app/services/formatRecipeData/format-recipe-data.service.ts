@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { recipeResponseData, recipePreview, recipe } from 'src/app/models';
 
+type recipeFormat = recipe & recipePreview;
+
 @Injectable({
   providedIn: 'root',
 })

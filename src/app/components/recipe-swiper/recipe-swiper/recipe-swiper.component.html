@@ -8,10 +8,7 @@
       *ngFor="let recipe of recipesSimilarList"
     >
       <app-recipe-card 
-        [id]="recipe.id"
-        [title]="recipe.title"
-        [imageUrl]="recipe.imageURL"
-        [tags]="recipe.tags"
+        [recipe]="recipe"
       ></app-recipe-card>
     </ng-template>
 </swiper>

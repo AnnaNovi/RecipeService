@@ -13,5 +13,4 @@ export class HomeComponent {
     this.recipeService.getRandomRecipesList(8);
 
   constructor(private recipeService: RecipeService) {}
-
 }

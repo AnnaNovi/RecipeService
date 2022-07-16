@@ -7,7 +7,7 @@
 <select name="category" id="category">
   <option value="" [defaultSelected]="true" disabled>Choose {{ activeType.getValue() }}</option>
   <option
-    *ngFor="let item of filterResultList$ | async | async as filterResultList"
+    *ngFor="let item of filterResultList$ | async as filterResultList"
     [value]="item.title">{{ item.title }}
   </option>
 </select>

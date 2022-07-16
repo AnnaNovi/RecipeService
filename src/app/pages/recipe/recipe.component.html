@@ -1,6 +1,6 @@
 <section class="recipe" *ngIf="recipe | async as recipe">
   <div class="image">
-    <app-recipe-image [imageUrl]="recipe.imageURL" [title]="recipe.title"></app-recipe-image>
+    <app-recipe-image [imageURL]="recipe.imageURL" [title]="recipe.title"></app-recipe-image>
   </div>
   <div class="titleBlock">
     <h1 class="titleBlock__title">{{ recipe.title }}</h1>
