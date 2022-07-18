@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe/recipe.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Observable, map, switchMap } from 'rxjs'
+import { Observable, switchMap } from 'rxjs'
 
 import { recipe } from 'src/app/models';
 
@@ -12,17 +12,17 @@ import { recipe } from 'src/app/models';
   styleUrls: ['./recipe.component.scss'],
 })
 export class RecipeComponent {
-  recipe: Observable<recipe> = this.router.paramMap.pipe(
+  recipe: Observable<recipe> = this.activatedRoute.paramMap.pipe(
     switchMap((params: ParamMap) => {
       const id = params.get('id');
-      return this.recipeService.getRecipeById(id);
+      return this.recipeService.getRecipeById(id, 'full');
     })
   );
   descriptionView = 'ingredients';
 
   constructor(
     private recipeService: RecipeService,
-    private router: ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {}
 
   handleButton(event: Event) {
@@ -32,5 +32,4 @@ export class RecipeComponent {
   activeButton(type: string) {
     return type.toLowerCase() === this.descriptionView;
   }
-
 }

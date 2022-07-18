@@ -14,12 +14,8 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'recipes',
+    path: 'recipes/:categoryType/:categoryValue',
     component: RecipesListComponent,
-  },
-  {
-    path: 'recipes/:category',
-    component: PageUnderConsrtructionComponent,
   },
   {
     path: 'categories',

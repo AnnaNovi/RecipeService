@@ -1,6 +1,7 @@
 @import '~/src/variables.scss';
 
-.recileList {
+.recipeList {
   @include recipeSection;
   margin-top: 28px;
+  margin-bottom: 28px;
 }
