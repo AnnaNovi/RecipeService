@@ -22,6 +22,8 @@ import { VideoPipe } from './pipes/video/video.pipe';
 import { FilterPanelComponent } from './components/filter-panel/filter-panel/filter-panel.component';
 import { RecipeImageComponent } from './components/recipe-image/recipe-image/recipe-image.component';
 import { RecipeSwiperComponent } from './components/recipe-swiper/recipe-swiper/recipe-swiper.component';
+import { PaginationComponent } from './components/pagination/pagination/pagination.component';
+import { LoopForNumberDirective } from './directives/loopForNumber/loop-for-number.directive';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { RecipeSwiperComponent } from './components/recipe-swiper/recipe-swiper/
     FilterPanelComponent,
     RecipeImageComponent,
     RecipeSwiperComponent,
+    PaginationComponent,
+    LoopForNumberDirective,
   ],
   imports: [
     BrowserModule,

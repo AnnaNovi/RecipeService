@@ -4,10 +4,7 @@
 >
   <app-recipe-card
     *ngFor="let recipe of recipesPreviewList"
-    [id]="recipe.id"
-    [title]="recipe.title"
-    [imageUrl]="recipe.imageURL"
-    [tags]="recipe.tags"
+    [recipe]="recipe"
   ></app-recipe-card>
 </section>
 <div

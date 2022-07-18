@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe/recipe.service'; 
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { recipePreview } from 'src/app/models';
 @Component({
@@ -9,9 +9,8 @@ import { recipePreview } from 'src/app/models';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  recipesPreviewList: BehaviorSubject<recipePreview[]> =
+  recipesPreviewList: Observable<recipePreview[]> =
     this.recipeService.getRandomRecipesList(8);
 
   constructor(private recipeService: RecipeService) {}
-
 }

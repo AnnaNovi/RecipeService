@@ -9,6 +9,8 @@ import {
   take,
   from,
   mergeMap,
+  switchMap,
+  skip,
 } from 'rxjs';
 import { environment as env } from 'src/environments/environment.prod';
 
@@ -26,8 +28,10 @@ import { FormatDataService } from '../formatRecipeData/format-recipe-data.servic
   providedIn: 'root',
 })
 export class RecipeService {
-  private recipesPreviewList: BehaviorSubject<any> = new BehaviorSubject([]);
-  private recipesSimilarList: BehaviorSubject<any> = new BehaviorSubject([]);
+  activePage$: BehaviorSubject<number> = new BehaviorSubject(1);
+  filterListPages$: BehaviorSubject<number> = new BehaviorSubject(1);
+  private recipesSimilarList$: BehaviorSubject<any> = new BehaviorSubject([]);
+  private recipesFilterList$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(
     private http: HttpClient,
@@ -41,41 +45,39 @@ export class RecipeService {
     return this.http.get<any>(`${env.BASE_URL}/lookup.php?i=${id}`);
   }
   private getRecipeByCategoryAPI(
-    category: string | null
+    type: string,
+    value: string
   ): Observable<recipeByCategoryResponse> {
-    return this.http.get<any>(`${env.BASE_URL}/filter.php?c=${category}`);
+    return this.http.get<any>(
+      `${env.BASE_URL}/filter.php?${type.slice(0, 1)}=${value}`
+    );
   }
 
   private getRandomRecipe(): Observable<recipePreview> {
     return this.getRandomRecipeAPI().pipe(
-      map((response: recipeResponse): recipePreview => {
-        const recipes = response.meals;
-        const recipeArray = recipes.map((item: recipeResponseData) => {
-          return this.formatData.formatShort(item);
-        });
-        return { ...recipeArray[0] };
+      switchMap((response: recipeResponse): Observable<recipeResponseData> => {
+        return from(response.meals);
+      }),
+      map((recipe: recipeResponseData) => {
+        return this.formatData.format(recipe, 'short');
       })
     );
   }
 
-  getRandomRecipesList(quantity: number): BehaviorSubject<recipePreview[]> {
-    if (!this.recipesPreviewList.getValue().length) {
-      this.getRandomRecipe()
-        .pipe(repeat(quantity), toArray())
-        .subscribe((recipe: recipePreview[]) => {
-          this.recipesPreviewList.next(recipe);
-        });
-    }
-    return this.recipesPreviewList;
+  getRandomRecipesList(quantity: number): Observable<recipePreview[]> {
+    return this.getRandomRecipe().pipe(repeat(quantity), toArray());
   }
 
-  getRecipeById(id: string | null): Observable<recipe> {
+  getRecipeById(
+    id: string | null,
+    type: 'short' | 'full' = 'full'
+  ): Observable<any> {
     return this.getRecipeByIdAPI(id).pipe(
       map((response: recipeResponse): recipeResponseData => {
         return response.meals[0];
       }),
       map((recipe: recipeResponseData) => {
-        return this.formatData.formatFull(recipe);
+        return this.formatData.format(recipe, type);
       })
     );
   }
@@ -84,8 +86,8 @@ export class RecipeService {
     quantity: number,
     category: string
   ): BehaviorSubject<recipe[]> {
-    if (!this.recipesSimilarList.getValue().length) {
-      this.getRecipeByCategoryAPI(category)
+    if (!this.recipesSimilarList$.getValue().length) {
+      this.getRecipeByCategoryAPI('category', category)
         .pipe(
           map((response: recipeByCategoryResponse): any => {
             return from(response.meals)
@@ -95,17 +97,51 @@ export class RecipeService {
                   (
                     recipe: recipeByCategoryResponseData
                   ): Observable<recipe> => {
-                    return this.getRecipeById(recipe.idMeal);
+                    return this.getRecipeById(recipe.idMeal, 'short');
                   }
                 ),
                 toArray()
               )
-              .subscribe((recipe: recipe[]) => this.recipesSimilarList.next(recipe));
-          }),
+              .subscribe((recipe: recipePreview[]) =>
+                this.recipesSimilarList$.next(recipe)
+              );
+          })
         )
-        .subscribe()
+        .subscribe();
     }
-    return this.recipesSimilarList;
+    return this.recipesSimilarList$;
   }
 
+  getFilterRecipesList(
+    filter: {
+      type: string;
+      value: string;
+    },
+    quantity: number,
+    page: number
+  ): BehaviorSubject<recipePreview[]> {
+    this.getRecipeByCategoryAPI(filter.type, filter.value)
+      .pipe(
+        map((response: recipeByCategoryResponse): any => {
+          const pages = Math.ceil(response.meals.length / quantity);
+          this.filterListPages$.next(pages);
+          return from(response.meals)
+            .pipe(
+              skip(quantity * (page - 1)),
+              take(quantity),
+              mergeMap(
+                (recipe: recipeByCategoryResponseData): Observable<recipe> => {
+                  return this.getRecipeById(recipe.idMeal, 'short');
+                }
+              ),
+              toArray()
+            )
+            .subscribe((recipe: recipePreview[]) => {
+              this.recipesFilterList$.next(recipe);
+            });
+        })
+      )
+      .subscribe();
+    return this.recipesFilterList$;
+  }
 }

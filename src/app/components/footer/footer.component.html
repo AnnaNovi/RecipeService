@@ -10,7 +10,7 @@
   <div class="footer__navigation" *ngIf="categoriesList$ | async as categoriesList">
     <a
       *ngFor="let category of categoriesList"
-      [routerLink]="'recipes/' + category.title | lowercase"
+      [routerLink]="['/recipes', category.title | lowercase]"
       class="footer__link"
       >{{ category.title }}</a
     >
