@@ -1,20 +1,33 @@
-<select name="type" id="type" (change)="changeActiveType($event)">
-  <option value="category" defaultSelected>Category</option>
-  <option value="area">Area</option>
-  <option value="ingredient">Ingredient</option>
-</select>
-<span>:</span>
-<select
-  name="category"
-  id="category"
-  (change)="changeActiveCategory($event)">
-  <option
-    value="default"
-    [defaultSelected]="true"
-    disabled>Choose {{ activeType.getValue() }}</option>
-  <option
-    *ngFor="let item of filterResultList$ | async as filterResultList"
-    [value]="item.title | lowercase">{{ item.title }}
-  </option>
-</select>
-
+<form [formGroup]="filterForm">
+  <select
+    formControlName="filter"
+    (change)="changeFilter('filter')"
+  >
+    <option
+      *ngFor="let filterType of filterTypes"
+      [ngValue]="filterType | lowercase"
+      [defaultSelected]="isDefault(filterType)"
+      [disabled]="isDefault(filterType)"
+    >
+      {{ isDefault(filterType) ? 'Choose filter' : filterType }}
+    </option>
+  </select>
+  <span>:</span>
+  <select
+    formControlName="value"
+    (change)="changeFilter('value')"
+    >
+    <option
+      ngValue="default"
+      [defaultSelected]="true"
+      [disabled]="true"
+    >
+      {{(filterResultList$) ? 'Choose ' + filterForm.get('filter')?.value : '-'}}
+    </option>
+    <option
+      *ngFor="let result of filterResultList$ | async as filterResultList"
+      [ngValue]="result.title | lowercase"
+      >{{result.title}}
+    </option>
+  </select>
+</form>

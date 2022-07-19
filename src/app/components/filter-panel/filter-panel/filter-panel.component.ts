@@ -1,15 +1,12 @@
 import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Output,
-  ViewChild,
+  Component, OnInit,
 } from '@angular/core';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FilterCombineService } from 'src/app/services/filter-combine/filter-combine.service';
 
 import { categories } from 'src/app/models';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-filter-panel',
@@ -17,37 +14,47 @@ import { Router } from '@angular/router';
   styleUrls: ['./filter-panel.component.scss'],
 })
 export class FilterPanelComponent {
-  activeType = new BehaviorSubject('category');
-  filterResultList$: Observable<categories[]> = this.activeType.pipe(
-    switchMap((type: string) => this.filterCombineService.getFilterByType(type))
-  );
-
-  @Output() onFilter = new EventEmitter<{ type: string; value: string }>();
-  @ViewChild('selectedByDefault') selectedByDefault!: ElementRef;
+  filterResultList$!: Observable<categories[]>;
+  filterForm!: FormGroup;
+  filterTypes: string[] = ['Default', 'Category', 'Area', 'Ingredient'];
 
   constructor(
     private filterCombineService: FilterCombineService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.setFilter();
+  }
 
-  changeActiveType(event: Event) {
-    const type = (<HTMLSelectElement>event.target).value;
-    this.activeType.next(type);
-    this.router.navigate(['/recipes', type, 'default'], {
+  changeFilter(filterType: 'filter' | 'value'): void {
+    const filter = this.filterForm.get('filter')?.value;
+    if (filterType === 'filter') {
+      this.filterResultList$ =
+        this.filterCombineService.getFilterByType(filter);
+      this.filterForm.patchValue({value: 'default'})
+    }
+    const value = this.filterForm.get('value')?.value;
+    this.router.navigate(['/recipes', filter, value], {
       queryParams: { page: 1 },
     });
   }
+  setFilter(): void {
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      const filter = params.get('categoryType');
+      const value = params.get('categoryValue');
+      if(filter && filter !== 'default') {
+        this.filterResultList$ =
+        this.filterCombineService.getFilterByType(filter);
+      }
+      this.filterForm = new FormGroup({
+        filter: new FormControl(filter),
+        value: new FormControl(value),
+      });
+    });
+  }
 
-  changeActiveCategory(event: Event) {
-    const type = this.activeType.getValue();
-    const value = (<HTMLSelectElement>event.target).value;
-    this.onFilter.emit({
-      type,
-      value,
-    });
-    this.router.navigate(['/recipes', type, value], {
-      queryParams: { page: 1 },
-    });
+  isDefault(string: string) {
+    return string.toLowerCase() === 'default';
   }
 
 }
