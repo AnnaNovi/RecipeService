@@ -1,6 +1,6 @@
 <section
-  *ngIf="recipesPreviewList | async as recipesPreviewList"
   class="recipeRandomSection"
+  *ngIf="recipesPreviewList | async as recipesPreviewList"
 >
   <app-recipe-card
     *ngFor="let recipe of recipesPreviewList"
@@ -10,6 +10,7 @@
 <div
   class="toCatalogBlock"
   [style.marginTop.px]="30"
+  *ngIf="recipesPreviewList | async"
   >
   <a
     routerLink="recipe"
