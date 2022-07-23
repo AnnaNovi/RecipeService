@@ -22,16 +22,16 @@
   <div class="descriptionBlock" [ngSwitch]="descriptionView">
     <div class="descriptionBlock__buttonsBlock">
       <button
-        (click)="handleButton($event)"
-        [ngClass]="{'descriptionBlock__button': true, 'active': activeButton('Ingredients')}"
+        (click)="changeDescriptionView($event)"
+        [ngClass]="{'descriptionBlock__button': true, 'active': isActiveButton('Ingredients')}"
       >Ingredients</button>
       <button
-        (click)="handleButton($event)"
-        [ngClass]="{'descriptionBlock__button': true, 'active': activeButton('Instructions')}"
+        (click)="changeDescriptionView($event)"
+        [ngClass]="{'descriptionBlock__button': true, 'active': isActiveButton('Instructions')}"
       >Instructions</button>
       <button
-        (click)="handleButton($event)"
-        [ngClass]="{'descriptionBlock__button': true, 'active': activeButton('Video')}"
+        (click)="changeDescriptionView($event)"
+        [ngClass]="{'descriptionBlock__button': true, 'active': isActiveButton('Video')}"
       >Video</button>
     </div>
     <ng-template [ngSwitchCase]="'ingredients'">

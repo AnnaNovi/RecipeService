@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { RecipeService } from 'src/app/services/recipe/recipe.service'; 
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable, map } from 'rxjs';
 
 import { recipePreview } from 'src/app/models';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  recipesPreviewList: Observable<recipePreview[]> =
-    this.recipeService.getRandomRecipesList(8);
+  recipesPreviewList$: Observable<recipePreview[]> =
+    this.activatedRoute.data.pipe(map((data) => data['recipesList']));
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
+
 }

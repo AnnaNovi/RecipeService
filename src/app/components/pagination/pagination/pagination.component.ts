@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, tap } from 'rxjs';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { RecipeService } from 'src/app/services/recipe/recipe.service';
+import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 
 @Component({
   selector: 'app-pagination',
@@ -10,28 +10,37 @@ import { RecipeService } from 'src/app/services/recipe/recipe.service';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
-  private activePage: BehaviorSubject<number>;
   public filterListPages: BehaviorSubject<number>;
 
   constructor(
-    private recipeService: RecipeService,
+    private recipeByFilterService: RecipeByFilterService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.filterListPages = this.recipeService.filterListPages$;
-    this.activePage = this.recipeService.activePage$;
+    this.filterListPages = this.recipeByFilterService.filterListPages$;
   }
 
   isActivePage(page: number) {
-    return page === this.activePage.getValue();
+    return page === this.recipeByFilterService.activePage$.getValue();
   }
 
   changePage(page: number) {
-    this.recipeService.activePage$.next(page);
+    this.recipeByFilterService.activePage$.next(page);
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
-      queryParams: { page: this.activePage.getValue() },
+      queryParams: { page },
       queryParamsHandling: 'merge',
     });
   }
+
+  /* setPage(){
+    this.activatedRoute.queryParamMap.pipe(
+      tap((params: ParamMap) => {
+        const page = params.get('page');
+        page
+          ? this.recipeByFilterService.activePage$.next(+page)
+          : this.recipeByFilterService.activePage$.next(1);
+      })
+    )
+  } */
 }

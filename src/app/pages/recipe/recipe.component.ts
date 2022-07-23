@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { RecipeService } from 'src/app/services/recipe/recipe.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { Observable, switchMap } from 'rxjs'
+import { Observable, map } from 'rxjs'
 
 import { recipe } from 'src/app/models';
 
@@ -12,24 +11,18 @@ import { recipe } from 'src/app/models';
   styleUrls: ['./recipe.component.scss'],
 })
 export class RecipeComponent {
-  recipe: Observable<recipe> = this.activatedRoute.paramMap.pipe(
-    switchMap((params: ParamMap) => {
-      const id = params.get('id');
-      return this.recipeService.getRecipeById(id, 'full');
-    })
+  recipe: Observable<recipe> = this.activatedRoute.data.pipe(
+    map((data) => data['recipeById'])
   );
   descriptionView = 'ingredients';
 
-  constructor(
-    private recipeService: RecipeService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  handleButton(event: Event) {
+  changeDescriptionView(event: Event) {
     const type = event.target as HTMLButtonElement;
     this.descriptionView = type.innerHTML.toLowerCase();
   }
-  activeButton(type: string) {
-    return type.toLowerCase() === this.descriptionView;
+  isActiveButton(type: string) {
+    return this.descriptionView === type.toLowerCase();
   }
 }

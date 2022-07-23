@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import SwiperCore, { Pagination, Navigation, SwiperOptions } from 'swiper';
 
-import { RecipeService } from 'src/app/services/recipe/recipe.service';
+import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 
 import { recipe } from 'src/app/models';
 
@@ -17,7 +17,7 @@ SwiperCore.use([Pagination, Navigation]);
 })
 export class RecipeSwiperComponent {
   recipesSimilarList$: BehaviorSubject<recipe[]> =
-    this.recipeService.getSimilarRecipesList(9, 'Vegetarian');
+    this.recipeByFilterService.getSimilarRecipesList(9, 'Vegetarian');
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -40,5 +40,5 @@ export class RecipeSwiperComponent {
     },
   };
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeByFilterService: RecipeByFilterService) {}
 }

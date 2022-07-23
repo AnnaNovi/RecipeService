@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, map } from 'rxjs';
 import { recipePreview } from 'src/app/models';
-import { RecipeService } from 'src/app/services/recipe/recipe.service';
 
 @Component({
   selector: 'app-recipes-list',
@@ -10,13 +9,13 @@ import { RecipeService } from 'src/app/services/recipe/recipe.service';
   styleUrls: ['./recipes-list.component.scss'],
 })
 export class RecipesListComponent {
-  recipesPreviewList$!: Observable<recipePreview[]>;
+  recipesPreviewList$: Observable<recipePreview[]> = this.activatedRoute.data.pipe(map((data) => data['recipesList']));
 
   constructor(
-    private recipeService: RecipeService,
     private activatedRoute: ActivatedRoute
   ) {
-    this.activatedRoute.paramMap.subscribe(
+    
+    /* this.activatedRoute.paramMap.subscribe(
       (params: ParamMap) => {
         const type = params.get('categoryType');
         const value = params.get('categoryValue');
@@ -26,10 +25,10 @@ export class RecipesListComponent {
             ? this.getRecipesByCategory({ type, value }, page)
             : this.recipeService.getRandomRecipesList(16);
       }
-    )
+    ) */
   }
 
-  getRecipesByCategory(
+  /* getRecipesByCategory(
     filter: { type: string; value: string },
     page: number = 1
   ): BehaviorSubject<recipePreview[]> {
@@ -38,6 +37,6 @@ export class RecipesListComponent {
       16,
       page
     ));
-  }
+  } */
 
 }

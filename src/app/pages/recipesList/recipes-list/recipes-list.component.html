@@ -1,8 +1,8 @@
 <app-filter-panel></app-filter-panel>
-<section class="recipeList" *ngIf="recipesPreviewList$ | async as recipesPreviewList">
+<section class="recipeList">
   <app-recipe-card
-    *ngFor="let recipe of recipesPreviewList"
+    *ngFor="let recipe of recipesPreviewList$ | async"
     [recipe]="recipe"
   ></app-recipe-card>
 </section>
-<app-pagination *ngIf="recipesPreviewList$ | async"></app-pagination>
+<app-pagination></app-pagination>
