@@ -1,0 +1,10 @@
+@import '~/src/variables.scss';
+
+.categories__title {
+  color: $GREEN;
+}
+.categories {
+  @include recipeSection;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}

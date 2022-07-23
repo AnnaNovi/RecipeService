@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CategoriesComponent } from './pages/categories/categories/categories.component';
 
 import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/pageNotFound/page-not-found/page-not-found.component';
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'categories',
-    component: PageUnderConsrtructionComponent,
+    component: CategoriesComponent,
   },
   {
     path: 'recipe/:id',
@@ -39,8 +40,12 @@ const routes: Routes = [
     },
   },
   {
-    path: '**',
+    path: 'notFound',
     component: PageNotFoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/notFound',
   },
 ];
 

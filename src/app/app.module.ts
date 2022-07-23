@@ -25,6 +25,8 @@ import { RecipeSwiperComponent } from './components/recipe-swiper/recipe-swiper/
 import { PaginationComponent } from './components/pagination/pagination/pagination.component';
 import { LoopForNumberDirective } from './directives/loopForNumber/loop-for-number.directive';
 import { LoaderComponent } from './components/loader/loader/loader.component';
+import { CategoriesComponent } from './pages/categories/categories/categories.component';
+import { CategoryCardComponent } from './components/category-card/category-card/category-card.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { LoaderComponent } from './components/loader/loader/loader.component';
     PaginationComponent,
     LoopForNumberDirective,
     LoaderComponent,
+    CategoriesComponent,
+    CategoryCardComponent,
   ],
   imports: [
     BrowserModule,
