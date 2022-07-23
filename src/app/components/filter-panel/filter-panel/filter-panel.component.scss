@@ -1,6 +1,6 @@
 @import '~/src/variables.scss';
 
-:host {
+.filterForm {
   display: grid;
   grid-template-columns: minmax(200px, auto) auto minmax(200px, auto);
   justify-content: flex-end;
@@ -19,7 +19,7 @@
     transform: translateY(-8px);
   }
 
-  select {
+  &__choice {
     color: $BLACK;
     font-weight: 400;
     font-size: 20px;
@@ -30,15 +30,14 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-  }
-
-  #type {
-    option {
-      text-align: end;
+    &:first-of-type{
+      option {
+        text-align: end;
+      }
     }
   }
 
-  span {
+  &__choiceSeparation {
     display: flex;
     justify-content: center;
     align-items: center;

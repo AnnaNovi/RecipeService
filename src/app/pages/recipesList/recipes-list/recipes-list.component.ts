@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, BehaviorSubject, map } from 'rxjs';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, map } from 'rxjs';
 import { recipePreview } from 'src/app/models';
 
 @Component({
@@ -12,31 +12,7 @@ export class RecipesListComponent {
   recipesPreviewList$: Observable<recipePreview[]> = this.activatedRoute.data.pipe(map((data) => data['recipesList']));
 
   constructor(
-    private activatedRoute: ActivatedRoute
-  ) {
-    
-    /* this.activatedRoute.paramMap.subscribe(
-      (params: ParamMap) => {
-        const type = params.get('categoryType');
-        const value = params.get('categoryValue');
-        const page = this.recipeService.activePage$.getValue();
-        this.recipesPreviewList$ =
-          value !== 'default' && type && value
-            ? this.getRecipesByCategory({ type, value }, page)
-            : this.recipeService.getRandomRecipesList(16);
-      }
-    ) */
-  }
+    private activatedRoute: ActivatedRoute) {}
 
-  /* getRecipesByCategory(
-    filter: { type: string; value: string },
-    page: number = 1
-  ): BehaviorSubject<recipePreview[]> {
-    return (this.recipesPreviewList$ = this.recipeService.getFilterRecipesList(
-      filter,
-      16,
-      page
-    ));
-  } */
 
 }

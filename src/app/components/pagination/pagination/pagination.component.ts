@@ -33,14 +33,4 @@ export class PaginationComponent {
     });
   }
 
-  /* setPage(){
-    this.activatedRoute.queryParamMap.pipe(
-      tap((params: ParamMap) => {
-        const page = params.get('page');
-        page
-          ? this.recipeByFilterService.activePage$.next(+page)
-          : this.recipeByFilterService.activePage$.next(1);
-      })
-    )
-  } */
 }

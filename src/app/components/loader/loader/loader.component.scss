@@ -1,0 +1,45 @@
+@import '~/src/variables.scss';
+$circleSize: 20px;
+
+.wrapper {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: $BLACK, $alpha: 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.loader {
+  border: 16px solid white;
+  border-top: 16px solid $GREEN;
+  border-radius: 50%;
+  width: 20vw;
+  height: 20vw;
+  min-width: 120px;
+  min-height: 120px;
+  animation: spin 2s linear infinite;
+  @media (max-width: 992px) {
+    border: 12px solid white;
+    border-top: 12px solid $GREEN;
+  }
+  @media (max-width: 576px) {
+    border: 8px solid white;
+    border-top: 8px solid $GREEN;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,5 +1,8 @@
 @import '~/src/variables.scss';
 
+:host{
+  align-self: flex-end;
+}
 .footer {
   background: $GREEN;
   padding-top: 25px;
