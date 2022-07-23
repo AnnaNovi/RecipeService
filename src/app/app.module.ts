@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RecipeCardComponent } from './components/recipe-card/recipe-card.component';
-
 import { HomeComponent } from './pages/home/home.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -24,6 +24,7 @@ import { RecipeImageComponent } from './components/recipe-image/recipe-image/rec
 import { RecipeSwiperComponent } from './components/recipe-swiper/recipe-swiper/recipe-swiper.component';
 import { PaginationComponent } from './components/pagination/pagination/pagination.component';
 import { LoopForNumberDirective } from './directives/loopForNumber/loop-for-number.directive';
+import { LoaderComponent } from './components/loader/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,11 @@ import { LoopForNumberDirective } from './directives/loopForNumber/loop-for-numb
     RecipeSwiperComponent,
     PaginationComponent,
     LoopForNumberDirective,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,

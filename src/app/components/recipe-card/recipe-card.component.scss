@@ -41,6 +41,7 @@
   }
 
   &__tagsList {
+    margin-top: 5px;
     display: flex;
     justify-content: end;
     flex-wrap: wrap;
@@ -51,17 +52,15 @@
   &__tag {
     display: inline-flex;
     align-items: center;
-    padding: 6px;
+    padding: 4px;
     border-radius: 5px;
     background: rgba($color: #2c7873, $alpha: 0.5);
     color: $BLACK;
-    font-size: 15px;
     font-weight: 700;
     svg {
       fill: $BLACK;
-      width: 18px;
-      height: 18px;
-      margin-right: 3px;
+      width: 12px;
+      height: 12px;
     }
   }
 }
