@@ -1,31 +1,22 @@
 import { state, trigger, transition, style, useAnimation, animate } from "@angular/animations";
-import { rotateIn } from 'ng-animate'
+import { fadeIn, fadeOut } from 'ng-animate'
 
 
 export const loaderAnimation = trigger('loader', [
-  transition(':enter', useAnimation(rotateIn, {
-    delay: 4000,
-    params: {
-      degrees: '-180deg',
-      fromOpacity: 1,
-      toOpacity: 1,
-      origin: 'center center'
-    }
-  })),
-  /* state(
-    'start',
-    style({
-      transform: 'rotate(0deg)',
+  transition(
+    ':enter',
+    useAnimation(fadeIn, {
+      params: {
+        timing: 0.5,
+      },
     })
   ),
-  state(
-    'end',
-    style({
-      transform: 'rotate(359deg)',
+  transition(
+    ':leave',
+    useAnimation(fadeOut, {
+      params: {
+        timing: 0.5,
+      },
     })
   ),
-  transition('start => end', animate('5s linear', style({
-      animationIterationCount: 'infinite'
-    })
-  )), */
 ]);

@@ -1,7 +1,11 @@
-<form [formGroup]="filterForm">
+<form
+  [formGroup]="filterForm"
+  class="filterForm"
+  >
   <select
     formControlName="filter"
     (change)="changeFilter('filter')"
+    class="filterForm__choice"
   >
     <option
       *ngFor="let filterType of filterTypes"
@@ -12,10 +16,11 @@
       {{ isDefault(filterType) ? 'Choose filter' : filterType }}
     </option>
   </select>
-  <span>:</span>
+  <span class="filterForm__choiceSeparation">:</span>
   <select
     formControlName="value"
     (change)="changeFilter('value')"
+    class="filterForm__choice"
     >
     <option
       ngValue="default"
