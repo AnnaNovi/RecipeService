@@ -1,4 +1,4 @@
-import { state, trigger, transition, style, useAnimation, animate } from "@angular/animations";
+import { trigger, transition, useAnimation } from "@angular/animations";
 import { fadeIn, fadeOut } from 'ng-animate'
 
 
