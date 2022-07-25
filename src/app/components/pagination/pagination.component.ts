@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 

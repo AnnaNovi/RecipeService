@@ -1,4 +1,9 @@
 <header class="header">
+  <mat-menu></mat-menu>
+  <div class="header__burger">
+    <span class="header__burger_left"></span>
+    <span class="header__burger_right"></span>
+  </div>
   <nav class="header__navigation">
     <a
       routerLink=""
@@ -19,10 +24,12 @@
     </svg>
     <a
       [routerLink]="['/recipes', 'default', 'default']"
-      routerLinkActive="active"
+      [queryParams]="{page: 1}"
       ariaCurrentWhenActive="page"
       class="header__link"
+      [class.active]="isActiveRecipe | async"
       >Recipes</a
     >
   </nav>
 </header>
+

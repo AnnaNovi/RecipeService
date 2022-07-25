@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoriesComponent } from './pages/categories/categories/categories.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 import { HomeComponent } from './pages/home/home.component';
-import { PageNotFoundComponent } from './pages/pageNotFound/page-not-found/page-not-found.component';
-import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/page-under-consrtruction/page-under-consrtruction.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { PageUnderConsrtructionComponent } from './pages/page-under-construction/page-under-consrtruction.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
-import { RecipesListComponent } from './pages/recipesList/recipes-list/recipes-list.component';
+import { RecipesListComponent } from './pages/recipes-list/recipes-list.component';
 import { RecipeByIdResolver } from './resolvers/recipe-by-id/recipe-by-id.resolver';
 import { RecipesListForHomePageResolver } from './resolvers/recipes-list-for-home-page/recipes-list-for-home-page.resolver';
 import { RecipesListForRecipesListPageResolver } from './resolvers/recipes-list-for-recipeslist-page/recipes-list-for-recipes-list-page.resolver';
