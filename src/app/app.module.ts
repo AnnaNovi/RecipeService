@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SwiperModule } from 'swiper/angular';
 
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,17 +18,17 @@ import { RecipeCardComponent } from './components/recipe-card/recipe-card.compon
 import { HomeComponent } from './pages/home/home.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { PageNotFoundComponent } from './pages/pageNotFound/page-not-found/page-not-found.component';
-import { PageUnderConsrtructionComponent } from './pages/pageUnderConstruction/page-under-consrtruction/page-under-consrtruction.component';
-import { RecipesListComponent } from './pages/recipesList/recipes-list/recipes-list.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { PageUnderConsrtructionComponent } from './pages/page-under-construction/page-under-consrtruction.component';
+import { RecipesListComponent } from './pages/recipes-list/recipes-list.component';
 import { VideoPipe } from './pipes/video/video.pipe';
 import { FilterPanelComponent } from './components/filter-panel/filter-panel.component';
-import { RecipeImageComponent } from './components/recipe-image/recipe-image/recipe-image.component';
-import { RecipeSwiperComponent } from './components/recipe-swiper/recipe-swiper/recipe-swiper.component';
-import { PaginationComponent } from './components/pagination/pagination/pagination.component';
+import { RecipeImageComponent } from './components/recipe-image/recipe-image.component';
+import { RecipeSwiperComponent } from './components/recipe-swiper/recipe-swiper.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { LoopForNumberDirective } from './directives/loopForNumber/loop-for-number.directive';
-import { LoaderComponent } from './components/loader/loader/loader.component';
-import { CategoriesComponent } from './pages/categories/categories/categories.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 
 @NgModule({
@@ -57,6 +60,8 @@ import { CategoryCardComponent } from './components/category-card/category-card.
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

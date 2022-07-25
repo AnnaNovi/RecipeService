@@ -6,13 +6,13 @@
   padding: 18px;
   border-width: 4px;
   border-style: dashed;
-  border-color: rgba($color: $BROWN, $alpha: 0.6);
+  border-color: rgba($color: $GREEN, $alpha: 0.6);
   border-radius: 5px;
-  box-shadow: 0px 0px 4px 3px rgba($color: $BROWN, $alpha: 0.4);
+  box-shadow: 0px 0px 4px 3px rgba($color: $GREEN, $alpha: 0.4);
   transition: 0.4s;
   &:hover {
     transition: 0.6s;
-    box-shadow: 0px 0px 4px 5px rgba($color: $BROWN, $alpha: 0.6);
+    box-shadow: 0px 0px 4px 5px rgba($color: $GREEN, $alpha: 0.6);
     transform: translateY(-8px);
   }
 
@@ -21,7 +21,7 @@
   }
   
   &__link {
-    color: $DARK_GREEN;
+    color: $DARK_BROWN;
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
@@ -54,7 +54,7 @@
     align-items: center;
     padding: 4px;
     border-radius: 5px;
-    background: rgba($color: #2c7873, $alpha: 0.5);
+    background: rgba($color: $PINK, $alpha: 0.5);
     color: $BLACK;
     font-weight: 700;
     svg {

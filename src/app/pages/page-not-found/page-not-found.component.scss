@@ -2,38 +2,35 @@
 
 :host {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70%;
+  height: 100%;
 }
-.pageUnderConstructionTitle {
+.pageNotFoundTitle {
   text-align: center;
   font-weight: 700;
-  font-size: 46px;
+  font-size: 52px;
   color: $GREEN;
+  text-transform: uppercase;
   letter-spacing: 0.1em;
 
   @media (max-width: 768px) {
-    font-size: 38px;
+    font-size: 40px;
   }
-
   @media (max-width: 576px) {
-    font-size: 26px;
+    font-size: 30px;
   }
 }
-.pageUnderConstructionSubtitle {
-  text-align: center;
-  font-weight: 400;
-  font-size: 30px;
+.pageNotFoundError {
+  font-weight: 700;
+  font-size: 20em;
   color: $GREEN;
-  letter-spacing: 0.1em;
-
+  opacity: 0.1;
+  position: absolute;
   @media (max-width: 768px) {
-    font-size: 24px;
+    font-size: 16em;
   }
-
   @media (max-width: 576px) {
-    font-size: 16px;
+    font-size: 12em;
   }
 }

@@ -2,6 +2,8 @@
 @import "~swiper/css/pagination";
 @import "~swiper/css/navigation";
 
+@import '~/src/variables.scss';
+
 app-recipe-swiper {
   display: grid;
 }
@@ -10,8 +12,8 @@ app-recipe-swiper {
 }
 
 .swiper-button-prev, .swiper-button-next {
-  color: rgba($color: #2c7873, $alpha: 1);
+  color: rgba($color: $PINK, $alpha: 1);
 }
 .swiper-pagination-bullet {
-  background: rgba($color: #2c7873, $alpha: 1);
+  background: rgba($color: $PINK, $alpha: 1);
 }
