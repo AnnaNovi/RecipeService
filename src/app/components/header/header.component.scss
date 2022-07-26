@@ -12,7 +12,7 @@
     letter-spacing: 0.1em;
     display: grid;
     column-gap: 45px;
-    grid-template-columns: repeat(auto-fit, minmax(20px, max-content));
+    grid-template-columns: repeat(auto-fit, minmax(10px, max-content));
     align-items: center;
     justify-content: center;
     @media (max-width: 1200px) {
@@ -28,7 +28,7 @@
     transition: 0.5s;
     &:hover:not(.active) {
       transition: 0.5s;
-      color: $BLACK;
+      color: $LIGHT_GREEN;
     }
     &.active {
       text-decoration: underline;
@@ -48,4 +48,5 @@
       height: 50px;
     }
   }
+
 }

@@ -1,0 +1,177 @@
+@import '~/src/variables.scss';
+
+@mixin btn($left, $top) {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  top: $top;
+  left: $left;
+  transition-duration: 0.5s;
+}
+
+@mixin icon($height, $width) {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: $height;
+  width: $width;
+  top: 15px;
+  background-color: white;
+}
+
+@mixin icon-before($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: white;
+  content: "";
+  top: $top;
+}
+
+@mixin icon-after($height, $width, $top) {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: $width;
+  height: $height;
+  background-color: white;
+  content: "";
+  top: $top;
+}
+
+.innerHeader {
+  background: $BROWN;
+  height: 70px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+mat-sidenav-content{
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  height: 100vh;
+  @media (max-width: 768px) {
+    grid-template-rows: auto min-content;
+    height: calc(100vh - 70px);
+  }
+}
+
+.header__burger ::ng-deep .mat-button-focus-overlay {
+  display: none;
+}
+
+.header {
+
+  &__burger {
+    @include btn(0px, 0px);
+
+    .header__burger_left {
+      @include icon(4px, 15px);
+      left: 1px;
+
+      &:before {
+        @include icon-before(4px, 15px, -10px);
+      }
+
+      &:after {
+        @include icon-after(4px, 15px, 10px);
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .header__burger_right {
+      @include icon(4px, 15px);
+      left: 15px;
+
+      &:before {
+        @include icon-before(4px, 15px, -10px);
+      }
+
+      &:after {
+        @include icon-after(4px, 15px, 10px);
+      }
+    }
+
+    &.open {
+      .header__burger_left {
+        transition-duration: 0.5s;
+        background: transparent;
+
+        &:before {
+          transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
+        }
+
+        &:after {
+          transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
+        }
+      }
+
+      .header__burger_right {
+        transition-duration: 0.5s;
+        background: transparent;
+
+        &:before {
+          transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+        }
+
+        &:after {
+          transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+        }
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__container{
+    width: 500px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  &__sidenav{
+    padding: 20px;
+  }
+  &__sidenav {
+    background: $BROWN;
+  }
+  &__sidenav-content{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  &__navigation {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 25px;
+    letter-spacing: 0.1em;
+    display: grid;
+    row-gap: 15px;
+    grid-template-rows: repeat(auto-fit, minmax(10px, max-content));
+    align-items: center;
+    justify-content: center;
+  
+    @media (max-width: 576px) {
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+  &__link {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+
+    &:hover:not(.active) {
+      transition: 0.5s;
+      color: $LIGHT_GREEN;
+    }
+
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}

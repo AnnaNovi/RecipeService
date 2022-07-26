@@ -8,9 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SwiperModule } from 'swiper/angular';
 
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -30,6 +27,8 @@ import { LoopForNumberDirective } from './directives/loopForNumber/loop-for-numb
 import { LoaderComponent } from './components/loader/loader.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
+import { HeaderBurgerComponent } from './components/header-burger/header-burger.component';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -51,6 +50,7 @@ import { CategoryCardComponent } from './components/category-card/category-card.
     LoaderComponent,
     CategoriesComponent,
     CategoryCardComponent,
+    HeaderBurgerComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,8 +60,7 @@ import { CategoryCardComponent } from './components/category-card/category-card.
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
-    MatMenuModule,
-    MatButtonModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
