@@ -1,0 +1,43 @@
+<header class="innerHeader" *ngIf="showHeaderBurger">
+  <button
+    mat-button
+    class="header__burger"
+    [class.open]="burgerState"
+    [disableRipple]="true"
+    (click)="toggleSidenav(sidenav)"
+  >
+    <span class="header__burger_left"></span>
+    <span class="header__burger_right"></span>
+  </button>
+</header>
+
+<mat-sidenav-container [style.backgroundColor]="'transparent'">
+  <mat-sidenav #sidenav class="header__sidenav" role="navigation"> 
+    <nav class="header__navigation">
+      <a
+        routerLink=""
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="header__link"
+        (click)="toggleSidenav(sidenav)"
+        >Home</a
+      >
+      <a
+        [routerLink]="['/recipes', 'default', 'default']"
+        [queryParams]="{page: 1}"
+        ariaCurrentWhenActive="page"
+        class="header__link"
+        [class.active]="isActiveRecipe | async"
+        (click)="toggleSidenav(sidenav)"
+        >Recipes</a
+      >
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+

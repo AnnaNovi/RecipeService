@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavigationEnd, Router, Event } from '@angular/router';
-import { filter, map, Observable, Subscription, tap } from 'rxjs';
+import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +16,7 @@ export class HeaderComponent {
       return router.url.includes('/recipes/');
     })
   );
-  
+
   constructor(private router: Router) {}
+
 }
