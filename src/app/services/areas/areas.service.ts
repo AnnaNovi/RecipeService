@@ -18,17 +18,17 @@ export class AreasService {
   constructor(private http: HttpClient) {}
 
   private getAreasAPI$(): Observable<areasNamesResponse> {
-    return this.http.get<any>(`${env.BASE_URL}/list.php?a=list`);
+    return this.http.get<areasNamesResponse>(`${env.BASE_URL}/list.php?a=list`);
   }
 
-  getAreas$(): BehaviorSubject<areasNamesResponseData[]> {
+  getAreas$(): BehaviorSubject<areas[]> {
     if (!this.areasList$.getValue().length) {
       this.getAreasAPI$()
         .pipe(
           map((response: areasNamesResponse): areas[] =>
             response.meals.map((area: areasNamesResponseData) => {
               return {
-                title: area.strArea
+                title: area.strArea,
               };
             })
           )

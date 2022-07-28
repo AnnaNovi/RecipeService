@@ -14,10 +14,12 @@ export class CategoryCardComponent {
 
   @Input() category!: categories;
   @ViewChild('categoryCardImage')
-  categoryCardImage!: ElementRef<HTMLDivElement>;
+  categoryCardImage: ElementRef<HTMLDivElement> | null = null;
 
   toggleBackOfCard() {
-    this.imageHeight = this.categoryCardImage?.nativeElement.clientHeight;
+    if(this.categoryCardImage) {
+      this.imageHeight = this.categoryCardImage?.nativeElement.clientHeight;
+    };
     this.backOfCard = !this.backOfCard;
   }
 
