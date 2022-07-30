@@ -40,7 +40,7 @@
     margin-bottom: 12px;
   }
 
-  &__tagsList {
+  &__tagsList > small {
     margin-top: 5px;
     display: flex;
     justify-content: end;
