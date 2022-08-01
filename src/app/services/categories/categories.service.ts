@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class CategoriesService {
-  private categoriesList$: BehaviorSubject<any> = new BehaviorSubject([]);
+  private categoriesList$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +22,7 @@ export class CategoriesService {
   }
 
   getCategories$(): BehaviorSubject<categories[]> {
-    if (!this.categoriesList$.getValue().length) {
+    if (!this.categoriesList$.getValue()) {
       this.getCategoriesAPI$()
         .pipe(
           map(
