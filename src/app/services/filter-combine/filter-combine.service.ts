@@ -14,7 +14,9 @@ export class FilterCombineService {
     private ingredientsService: IngredientsService
   ) {}
 
-  getFilterByType(type: string): BehaviorSubject<any[]> {
+  getFilterByType(
+    type: 'category' | 'area' | 'ingredient'
+  ): BehaviorSubject<any[]> {
     switch (type) {
       case 'category':
         return this.categoriesService.getCategories$();
@@ -22,8 +24,6 @@ export class FilterCombineService {
         return this.areasService.getAreas$();
       case 'ingredient':
         return this.ingredientsService.getIngredients$();
-      default:
-        return this.categoriesService.getCategories$();
     }
   }
 }
