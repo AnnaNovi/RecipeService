@@ -2,15 +2,14 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { environment as env } from 'src/environments/environment';
 
 import { AreasService } from './areas.service';
 
-import { areasNamesResponse, areasNamesResponseData, areas } from '../../models';
-import { BehaviorSubject } from 'rxjs';
+import { areasNamesResponse, areas } from '../../models';
 
 describe('AreasService', () => {
   let areasService: AreasService;
@@ -22,7 +21,7 @@ describe('AreasService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    areasService = TestBed.inject(AreasService);
+    areasService = TestBed.get(AreasService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
   });
@@ -39,8 +38,7 @@ describe('AreasService', () => {
       meals: [{ strArea: 'American' }],
     };
 
-    //@ts-expect-error - private method
-    areasService.getAreasAPI$().subscribe((response): areasNamesResponse => {
+    areasService['getAreasAPI$']().subscribe((response: areasNamesResponse) => {
       expect(response).toEqual(areasResponse);
     });
 
@@ -52,19 +50,30 @@ describe('AreasService', () => {
     req.flush(areasResponse);
   });
 
-  it('should call method getAreas$ and return a BehaviorSubject<areas[]>', () => {
-    //@ts-expect-error - private property
-    const areas: BehaviorSubject<areas[]> = areasService.areasList$;
-
-    const result = areasService.getAreas$();
-    expect(result).toEqual(areas);
+  it('should call method getAreas$ and return a private property areasList$', () => {
+    const areasResponse: areasNamesResponse = {
+      meals: [{ strArea: 'American' }],
+    };
+    expect(areasService.getAreas$()).toEqual(areasService['areasList$']);
 
     const req = httpTestingController.expectOne({
       method: 'GET',
       url: `${env.BASE_URL}/list.php?a=list`,
     });
 
-    req.flush(areas);
+    req.flush(areasResponse);
+  });
+
+  it('should equal initial value of private property areasList$ to null', () => {
+    areasService['areasList$'].subscribe((areas: null) => {
+      expect(areas).toBeNull();
+    });
+  });
+
+  it('should equal value of private property areasList$ to type areas[] after next(areas[])', () => {
+    const areasResult: areas[] = [{ title: 'American' }];
+    areasService['areasList$'].next(areasResult);
+    expect(areasService['areasList$'].getValue()).toEqual(areasResult);
   });
 
 });

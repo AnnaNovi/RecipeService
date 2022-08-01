@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class AreasService {
-  private areasList$: BehaviorSubject<any> = new BehaviorSubject([]);
+  private areasList$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +22,7 @@ export class AreasService {
   }
 
   getAreas$(): BehaviorSubject<areas[]> {
-    if (!this.areasList$.getValue().length) {
+    if (!this.areasList$.getValue()) {
       this.getAreasAPI$()
         .pipe(
           map((response: areasNamesResponse): areas[] =>
