@@ -16,14 +16,19 @@ describe('AreasService', () => {
   let httpClientTestingModule: HttpClientTestingModule;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
+  let areasResponse: areasNamesResponse;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    areasService = TestBed.get(AreasService);
+    areasService = TestBed.inject(AreasService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
+
+    areasResponse = {
+      meals: [{ strArea: 'American' }],
+    };
   });
   afterEach(() => {
     httpTestingController.verify();
@@ -34,9 +39,6 @@ describe('AreasService', () => {
   });
 
   it('should call private method getAreasAPI$ and return an object type of areasNamesResponse', () => {
-    const areasResponse: areasNamesResponse = {
-      meals: [{ strArea: 'American' }],
-    };
 
     areasService['getAreasAPI$']().subscribe((response: areasNamesResponse) => {
       expect(response).toEqual(areasResponse);
@@ -51,9 +53,7 @@ describe('AreasService', () => {
   });
 
   it('should call method getAreas$ and return a private property areasList$', () => {
-    const areasResponse: areasNamesResponse = {
-      meals: [{ strArea: 'American' }],
-    };
+
     expect(areasService.getAreas$()).toEqual(areasService['areasList$']);
 
     const req = httpTestingController.expectOne({

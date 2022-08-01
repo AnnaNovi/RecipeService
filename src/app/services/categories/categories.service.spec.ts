@@ -1,7 +1,6 @@
 import {
   HttpClientTestingModule,
   HttpTestingController,
-  TestRequest,
 } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
@@ -17,26 +16,27 @@ describe('CategoriesService', () => {
   let httpClientTestingModule: HttpClientTestingModule;
   let httpClient: HttpClient;
   let httpTestingController: HttpTestingController;
+  let categoriesResponse: categoriesResponse;
 
-  const categoriesResponse: categoriesResponse = {
-    categories: [
-      {
-        idCategory: '1',
-        strCategory: 'Beef',
-        strCategoryThumb: 'https://www.themealdb.com/images/category/beef.png',
-        strCategoryDescription:
-          'Beef is the culinary name for meat from cattle, particularly skeletal muscle. Humans have been eating beef since prehistoric times.[1] Beef is a source of high-quality protein and essential nutrients.[2]',
-      },
-    ],
-  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
     });
-    categoriesService = TestBed.get(CategoriesService);
+    categoriesService = TestBed.inject(CategoriesService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
+
+    categoriesResponse = {
+      categories: [
+        {
+          idCategory: '1',
+          strCategory: 'Beef',
+          strCategoryThumb: 'https://www.themealdb.com/images/category/beef.png',
+          strCategoryDescription: 'Beef is the culinary name for meat from ...',
+        },
+      ],
+    };
 
   });
   afterEach(() => {
@@ -83,14 +83,13 @@ describe('CategoriesService', () => {
 
   it('should equal value of private property categoriesList$ to type categories[] after next(categories[])', () => {
     const categoriesResult: categories[] = [
-    {
-      id: '1',
-      title: 'Beef',
-      imageURL:
-        'https://www.themealdb.com/images/category/beef.png',
-      description:
-        'Beef is the culinary name for meat from cattle, particularly skeletal muscle. Humans have been eating beef since prehistoric times.[1] Beef is a source of high-quality protein and essential nutrients.[2]',
-    }];
+      {
+        id: '1',
+        title: 'Beef',
+        imageURL: 'https://www.themealdb.com/images/category/beef.png',
+        description: 'Beef is the culinary name for meat from ...',
+      },
+    ];
     categoriesService['categoriesList$'].next(categoriesResult);
     expect(categoriesService['categoriesList$'].getValue()).toEqual(
       categoriesResult
