@@ -14,7 +14,7 @@ import {
   providedIn: 'root',
 })
 export class IngredientsService {
-  private ingredientsList$: BehaviorSubject<any> = new BehaviorSubject([]);
+  private ingredientsList$: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) {}
 
@@ -23,7 +23,7 @@ export class IngredientsService {
   }
 
   getIngredients$(): BehaviorSubject<ingredientsNamesResponseData[]> {
-    if (!this.ingredientsList$.getValue().length) {
+    if (!this.ingredientsList$.getValue()) {
       this.getIngredientsAPI$()
         .pipe(
           map((response: ingredientsNamesResponse): ingredients[] =>
