@@ -1,56 +1,66 @@
 <section class="recipe" *ngIf="recipe | async as recipe">
   <div class="image">
-    <app-recipe-image [imageURL]="recipe.imageURL" [title]="recipe.title"></app-recipe-image>
+    <app-recipe-image
+      [imageURL]="recipe.imageURL"
+      [title]="recipe.title"
+    ></app-recipe-image>
   </div>
   <div class="titleBlock">
     <h1 class="titleBlock__title">{{ recipe.title }}</h1>
-    <div class="titleBlock__category">
-      Category: {{ recipe.category }}
-    </div>
-    <div
-      class="titleBlock__tagsList"
-      *ngIf="!!recipe.tags"
-    >
-      <span
-        class="titleBlock__tag"
-        *ngFor="let tag of recipe.tags"
+    <div class="titleBlock__category">Category: {{ recipe.category }}</div>
+    <div class="titleBlock__tagsList" *ngIf="!!recipe.tags">
+      <span class="titleBlock__tag" *ngFor="let tag of recipe.tags">
+        <app-svg id="hash"></app-svg>
+        {{ tag }}</span
       >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="m12.5 40 2.15-8.5H7l.75-3h7.65l2.25-9H9l.75-3h8.65L20.5 8h2.95l-2.1 8.5h9.05L32.5 8h2.95l-2.1 8.5H41l-.75 3H32.6l-2.25 9H39l-.75 3H29.6L27.5 40h-3l2.15-8.5H17.6L15.5 40Zm5.85-11.5h9.05l2.25-9H20.6Z"/></svg>
-      {{ tag }}</span>
     </div>
   </div>
   <div class="descriptionBlock" [ngSwitch]="descriptionView">
     <div class="descriptionBlock__buttonsBlock">
       <button
         (click)="changeDescriptionView($event)"
-        [ngClass]="{'descriptionBlock__button': true, 'active': isActiveButton('Ingredients')}"
-      >Ingredients</button>
+        [ngClass]="{
+          descriptionBlock__button: true,
+          active: isActiveButton('Ingredients')
+        }"
+      >
+        Ingredients
+      </button>
       <button
         (click)="changeDescriptionView($event)"
-        [ngClass]="{'descriptionBlock__button': true, 'active': isActiveButton('Instructions')}"
-      >Instructions</button>
+        [ngClass]="{
+          descriptionBlock__button: true,
+          active: isActiveButton('Instructions')
+        }"
+      >
+        Instructions
+      </button>
       <button
         (click)="changeDescriptionView($event)"
-        [ngClass]="{'descriptionBlock__button': true, 'active': isActiveButton('Video')}"
-      >Video</button>
+        [ngClass]="{
+          descriptionBlock__button: true,
+          active: isActiveButton('Video')
+        }"
+      >
+        Video
+      </button>
     </div>
-    <ng-template [ngSwitchCase]="'ingredients'">
+    <ng-template ngSwitchCase="ingredients">
       <ul class="ingredient">
         <li *ngFor="let ingredient of recipe.ingredients | keyvalue">
-          <span class="ingredient__key"><b>{{ ingredient.key }}</b></span>
+          <span class="ingredient__key"
+            ><b>{{ ingredient.key }}</b></span
+          >
           <span> – </span>
           <span class="ingredient__value">{{ ingredient.value }}</span>
         </li>
       </ul>
     </ng-template>
-    <ng-template [ngSwitchCase]="'instructions'">
+    <ng-template ngSwitchCase="instructions">
       <p class="instructions">{{ recipe.instruction }}</p>
     </ng-template>
-    <ng-template [ngSwitchCase]="'video'">
-      <div
-        *ngIf="recipe.videoURL.trim(); else noVideo"
-        class="video"
-      >
+    <ng-template ngSwitchCase="video">
+      <div *ngIf="recipe.videoURL.trim(); else noVideo" class="video">
         <iframe
           frameborder="0"
           [src]="recipe.videoURL | video"
@@ -58,9 +68,7 @@
         ></iframe>
       </div>
       <ng-template #noVideo>
-        <p
-          class="noVideo"
-        >There is no video for this recipe)</p>
+        <p class="noVideo">There is no video for this recipe)</p>
       </ng-template>
     </ng-template>
   </div>

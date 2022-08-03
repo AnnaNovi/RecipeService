@@ -7,6 +7,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PageUnderConsrtructionComponent } from './pages/page-under-construction/page-under-consrtruction.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { RecipesListComponent } from './pages/recipes-list/recipes-list.component';
+import { SearchComponent } from './pages/search/search.component';
 import { RecipeByIdResolver } from './resolvers/recipe-by-id/recipe-by-id.resolver';
 import { RecipesListForHomePageResolver } from './resolvers/recipes-list-for-home-page/recipes-list-for-home-page.resolver';
 import { RecipesListForRecipesListPageResolver } from './resolvers/recipes-list-for-recipeslist-page/recipes-list-for-recipes-list-page.resolver';
@@ -38,6 +39,10 @@ const routes: Routes = [
     resolve: {
       recipeById: RecipeByIdResolver,
     },
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
   },
   {
     path: 'notFound',

@@ -1,4 +1,4 @@
-@import '~/src/variables.scss';
+@import "~/src/variables.scss";
 
 .header {
   background: $BROWN;
@@ -35,7 +35,7 @@
     }
   }
 
-  &__logo {
+  ::ng-deep &__logo svg {
     fill: white;
     width: 60px;
     height: 60px;
@@ -49,4 +49,9 @@
     }
   }
 
+  &__searchBar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 }

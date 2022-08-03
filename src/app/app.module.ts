@@ -29,6 +29,9 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { HeaderBurgerComponent } from './components/header-burger/header-burger.component';
 import { MaterialModule } from './modules/material/material.module';
+import { SearchComponent } from './pages/search/search.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SVGComponent } from './components/svg/svg.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import { MaterialModule } from './modules/material/material.module';
     CategoriesComponent,
     CategoryCardComponent,
     HeaderBurgerComponent,
+    SearchComponent,
+    SearchBarComponent,
+    SVGComponent,
   ],
   imports: [
     BrowserModule,

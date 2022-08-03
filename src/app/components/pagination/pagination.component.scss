@@ -1,8 +1,8 @@
-@import '~/src/variables.scss';
+@import "~/src/variables.scss";
 
 .pagination {
   display: grid;
-  justify-content: end;
+  justify-content: flex-end;
   grid-template-columns: repeat(auto-fit, 50px);
   column-gap: 15px;
 
@@ -16,7 +16,8 @@
     border-radius: 50%;
     box-shadow: 0 0 7px 1px rgba($color: $GREEN, $alpha: 0.5);
     cursor: pointer;
-    &.active, &:hover {
+    &.active,
+    &:hover {
       transition: 0.2s;
       border-width: 4px;
       border-style: dashed;

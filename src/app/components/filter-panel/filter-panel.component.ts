@@ -1,6 +1,4 @@
-import {
-  Component,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FilterCombineService } from 'src/app/services/filter-combine/filter-combine.service';
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
@@ -49,6 +47,7 @@ export class FilterPanelComponent {
       const value = params.get('categoryValue');
       if (filter && filter !== 'default') {
         this.filterResultList$ =
+          //@ts-expect-error
           this.filterCombineService.getFilterByType(filter);
       }
       this.filterForm = new FormGroup({

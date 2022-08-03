@@ -1,4 +1,4 @@
-@import '~/src/variables.scss';
+@import "~/src/variables.scss";
 
 .recipeCard {
   width: 100%;
@@ -19,7 +19,7 @@
   &__title {
     text-align: center;
   }
-  
+
   &__link {
     color: $DARK_BROWN;
     font-weight: 600;
@@ -43,7 +43,7 @@
   &__tagsList > small {
     margin-top: 5px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     flex-wrap: wrap;
     row-gap: 10px;
     column-gap: 10px;
@@ -57,10 +57,10 @@
     background: rgba($color: $PINK, $alpha: 0.5);
     color: $BLACK;
     font-weight: 700;
-    svg {
-      fill: $BLACK;
-      width: 12px;
-      height: 12px;
-    }
+  }
+  ::ng-deep #hash svg {
+    fill: $BLACK;
+    width: 12px;
+    height: 12px;
   }
 }
