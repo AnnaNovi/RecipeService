@@ -1,6 +1,19 @@
-<form class="searchBar">
-  <input class="searchBar__input" type="text" />
-  <button class="searchBar__button">
+<form
+  #searchBarFormElement
+  class="searchBar"
+  [formGroup]="searchBarForm"
+  (ngSubmit)="searchByValue()"
+>
+  <div class="searchBar__inputContainer">
+    <input
+      *ngIf="isSearchBar"
+      [@searchBar]
+      formControlName="searchValue"
+      class="searchBar__input"
+      type="text"
+    />
+  </div>
+  <button type="submit" class="searchBar__button">
     <app-svg id="search"></app-svg>
   </button>
 </form>

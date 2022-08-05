@@ -1,6 +1,5 @@
-import { trigger, transition, useAnimation } from "@angular/animations";
-import { fadeIn, fadeOut } from 'ng-animate'
-
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { fadeIn, fadeOut } from 'ng-animate';
 
 export const loaderAnimation = trigger('loader', [
   transition(

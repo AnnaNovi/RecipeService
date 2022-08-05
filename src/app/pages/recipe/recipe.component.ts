@@ -21,7 +21,6 @@ export class RecipeComponent {
   changeDescriptionView(event: Event) {
     const type = event.target as HTMLButtonElement;
     this.descriptionView = type.innerHTML.toLowerCase().trim();
-    console.log(this.descriptionView);
   }
   isActiveButton(type: string) {
     return this.descriptionView === type.toLowerCase();

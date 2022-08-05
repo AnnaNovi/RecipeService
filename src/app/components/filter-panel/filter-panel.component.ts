@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { FilterCombineService } from 'src/app/services/filter-combine/filter-combine.service';
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 
@@ -12,7 +12,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './filter-panel.component.html',
   styleUrls: ['./filter-panel.component.scss'],
 })
-export class FilterPanelComponent {
+export class FilterPanelComponent implements OnInit, OnDestroy {
   filterResultList$!: Observable<categories[]>;
   filterForm!: FormGroup;
   filterTypes: string[] = ['Default', 'Category', 'Area', 'Ingredient'];
@@ -22,9 +22,7 @@ export class FilterPanelComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private recipeByFilterService: RecipeByFilterService
-  ) {
-    this.setFilter();
-  }
+  ) {}
 
   changeFilter(filterType: 'filter' | 'value'): void {
     const filter = this.filterForm.get('filter')?.value;
@@ -41,8 +39,8 @@ export class FilterPanelComponent {
       });
     }
   }
-  setFilter(): void {
-    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+  setFilter(): Subscription {
+    return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       const filter = params.get('categoryType');
       const value = params.get('categoryValue');
       if (filter && filter !== 'default') {
@@ -59,5 +57,12 @@ export class FilterPanelComponent {
 
   isDefault(string: string) {
     return string.toLowerCase() === 'default';
+  }
+
+  ngOnInit(): void {
+    this.setFilter();
+  }
+  ngOnDestroy(): void {
+    this.setFilter().unsubscribe();
   }
 }
