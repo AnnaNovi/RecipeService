@@ -4,13 +4,27 @@
   display: flex;
   justify-content: flex-end;
 
+  &__inputContainer {
+    overflow: hidden;
+  }
   &__input {
     padding: 10px;
     width: 250px;
+    height: 100%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     outline: none;
     border: none;
+    font-size: 20px;
+    color: $BLACK;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 14px;
+    }
   }
   &__button {
     display: flex;
@@ -19,15 +33,18 @@
     outline: none;
     border: none;
     padding: 10px;
-    border: 4px $LIGHT_GREEN dashed;
+    border: 4px $BROWN dashed;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     background: white;
-    transition: 0.5;
+    transition: 0.3s;
     cursor: pointer;
     &:hover {
-      transition: 0.5;
+      transition: 0.5s;
       background: $LIGHT_GREEN;
+      ::ng-deep #search svg {
+        fill: white;
+      }
     }
   }
 
