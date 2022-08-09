@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 import { categories } from 'src/app/models';
-import {BehaviorSubject} from 'rxjs'
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +9,7 @@ import {BehaviorSubject} from 'rxjs'
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  categoriesList$: BehaviorSubject<categories[]> =
+  public categoriesList$: BehaviorSubject<categories[]> =
     this.categoriesService.getCategories$();
 
   constructor(private categoriesService: CategoriesService) {}

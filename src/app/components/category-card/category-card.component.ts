@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { categories } from 'src/app/models';
-import {categoryCardAnimation} from './category-card.animation';
+import { categoryCardAnimation } from './category-card.animation';
 
 @Component({
   selector: 'app-category-card',
@@ -9,18 +9,17 @@ import {categoryCardAnimation} from './category-card.animation';
   animations: [categoryCardAnimation],
 })
 export class CategoryCardComponent {
-  backOfCard = false;
-  imageHeight = 0;
+  public backOfCard = false;
+  public imageHeight = 0;
 
   @Input() category!: categories;
   @ViewChild('categoryCardImage')
   categoryCardImage: ElementRef<HTMLDivElement> | null = null;
 
-  toggleBackOfCard() {
-    if(this.categoryCardImage) {
+  public toggleBackOfCard() {
+    if (this.categoryCardImage) {
       this.imageHeight = this.categoryCardImage?.nativeElement.clientHeight;
-    };
+    }
     this.backOfCard = !this.backOfCard;
   }
-
 }

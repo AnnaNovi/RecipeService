@@ -1,17 +1,15 @@
 <footer class="footer">
   <div class="footer__title">
-    <a
-      [routerLink]="['/categories']"
-      class="footer__titleLink"
-    >
-      Categories
-    </a>
+    <a [routerLink]="['/categories']" class="footer__titleLink"> Categories </a>
   </div>
-  <div class="footer__navigation" *ngIf="categoriesList$ | async as categoriesList">
+  <div
+    class="footer__navigation"
+    *ngIf="categoriesList$ | async as categoriesList"
+  >
     <a
       *ngFor="let category of categoriesList"
-      [routerLink]="['/recipes', 'category',  category.title | lowercase]"
-      [queryParams]="{page: 1}"
+      [routerLink]="['/recipes', 'category', category.title | lowercase]"
+      [queryParams]="{ page: 1 }"
       class="footer__link"
       >{{ category.title }}</a
     >

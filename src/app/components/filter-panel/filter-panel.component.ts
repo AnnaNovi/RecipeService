@@ -13,9 +13,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./filter-panel.component.scss'],
 })
 export class FilterPanelComponent implements OnInit, OnDestroy {
-  filterResultList$!: Observable<categories[]>;
-  filterForm!: FormGroup;
-  filterTypes: string[] = ['Default', 'Category', 'Area', 'Ingredient'];
+  public filterForm!: FormGroup;
+  public filterResultList$!: Observable<categories[]>;
+  public filterTypes: string[] = ['Default', 'Category', 'Area', 'Ingredient'];
 
   constructor(
     private filterCombineService: FilterCombineService,
@@ -24,7 +24,11 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
     private recipeByFilterService: RecipeByFilterService
   ) {}
 
-  changeFilter(filterType: 'filter' | 'value'): void {
+  public isDefault(string: string) {
+    return string.toLowerCase() === 'default';
+  }
+
+  public changeFilter(filterType: 'filter' | 'value'): void {
     const filter = this.filterForm.get('filter')?.value;
     const value = this.filterForm.get('value')?.value;
     if (filterType === 'filter') {
@@ -39,7 +43,7 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
       });
     }
   }
-  setFilter(): Subscription {
+  private setFilter(): Subscription {
     return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       const filter = params.get('categoryType');
       const value = params.get('categoryValue');
@@ -53,10 +57,6 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
         value: new FormControl(value),
       });
     });
-  }
-
-  isDefault(string: string) {
-    return string.toLowerCase() === 'default';
   }
 
   ngOnInit(): void {

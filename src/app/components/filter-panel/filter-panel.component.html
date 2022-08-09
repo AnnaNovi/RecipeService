@@ -1,7 +1,4 @@
-<form
-  [formGroup]="filterForm"
-  class="filterForm"
-  >
+<form [formGroup]="filterForm" class="filterForm">
   <select
     formControlName="filter"
     (change)="changeFilter('filter')"
@@ -13,7 +10,7 @@
       [defaultSelected]="isDefault(filterType)"
       [disabled]="isDefault(filterType)"
     >
-      {{ isDefault(filterType) ? 'Choose filter' : filterType }}
+      {{ isDefault(filterType) ? "Choose filter" : filterType }}
     </option>
   </select>
   <span class="filterForm__choiceSeparation">:</span>
@@ -21,18 +18,17 @@
     formControlName="value"
     (change)="changeFilter('value')"
     class="filterForm__choice"
-    >
-    <option
-      ngValue="default"
-      [defaultSelected]="true"
-      [disabled]="true"
-    >
-      {{(filterResultList$) ? 'Choose ' + filterForm.get('filter')?.value : '-'}}
+  >
+    <option ngValue="default" [defaultSelected]="true" [disabled]="true">
+      {{
+        filterResultList$ ? "Choose " + filterForm.get("filter")?.value : "-"
+      }}
     </option>
     <option
       *ngFor="let result of filterResultList$ | async as filterResultList"
       [ngValue]="result.title | lowercase"
-      >{{result.title}}
+    >
+      {{ result.title }}
     </option>
   </select>
 </form>
