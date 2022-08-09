@@ -1,0 +1,46 @@
+@import "~/src/variables.scss";
+
+.recipeList {
+  @include recipeSection;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+
+.emptySearchTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 46px;
+  color: $GREEN;
+  letter-spacing: 0.1em;
+
+  @media (max-width: 768px) {
+    font-size: 38px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 26px;
+  }
+}
+.emptySearchSubtitle {
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+  color: $GREEN;
+  letter-spacing: 0.1em;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 16px;
+  }
+}
+
+.emptySearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
