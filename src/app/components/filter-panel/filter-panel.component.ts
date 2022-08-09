@@ -24,6 +24,22 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
     private recipeByFilterService: RecipeByFilterService
   ) {}
 
+  private setFilter(): Subscription {
+    return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      const filter = params.get('categoryType');
+      const value = params.get('categoryValue');
+      if (filter && filter !== 'default') {
+        this.filterResultList$ =
+          //@ts-expect-error
+          this.filterCombineService.getFilterByType(filter);
+      }
+      this.filterForm = new FormGroup({
+        filter: new FormControl(filter),
+        value: new FormControl(value),
+      });
+    });
+  }
+
   changeFilter(filterType: 'filter' | 'value'): void {
     const filter = this.filterForm.get('filter')?.value;
     const value = this.filterForm.get('value')?.value;
@@ -38,21 +54,6 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
         queryParams: { page: 1 },
       });
     }
-  }
-  setFilter(): Subscription {
-    return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      const filter = params.get('categoryType');
-      const value = params.get('categoryValue');
-      if (filter && filter !== 'default') {
-        this.filterResultList$ =
-          //@ts-expect-error
-          this.filterCombineService.getFilterByType(filter);
-      }
-      this.filterForm = new FormGroup({
-        filter: new FormControl(filter),
-        value: new FormControl(value),
-      });
-    });
   }
 
   isDefault(string: string) {

@@ -1,18 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { loaderAnimation } from './loader.animation';
 
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss'],
-  animations: [loaderAnimation]
+  animations: [loaderAnimation],
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent {
   loaderState = 'start';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
