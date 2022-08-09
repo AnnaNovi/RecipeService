@@ -1,9 +1,22 @@
-<p>search works!</p>
-<!-- <section
-  class="recipeRandomSection"
->
-  <app-recipe-card
-    *ngFor="let recipe of recipesPreviewList$ | async"
-    [recipe]="recipe"
-  ></app-recipe-card>
-</section> -->
+<h1>{{ 'Search by request "' + searchValue + '"' }}</h1>
+<div *ngIf="recipesPreviewList$ | async; else emptySearch">
+  <section class="recipeList">
+    <app-recipe-card
+      *ngFor="let recipe of recipesPreviewList$ | async"
+      [recipe]="recipe"
+    ></app-recipe-card>
+  </section>
+  <app-pagination
+    [activePage]="activePage"
+    [totalQuantityOfPages]="totalQuantityOfPages"
+    (newActivePage)="changePage($event)"
+  ></app-pagination>
+</div>
+<ng-template #emptySearch>
+  <div class="emptySearch">
+    <h1 class="emptySearchTitle">No results found</h1>
+    <p class="emptySearchSubtitle">
+      We couldn't find what you're looking for. Please try another way.
+    </p>
+  </div>
+</ng-template>

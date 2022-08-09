@@ -52,12 +52,13 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
   searchByValue() {
     const searchValue = this.searchBarForm.value.searchValue;
     if (this.isSearchBar && searchValue) {
-      console.log(this.searchBarForm);
-      console.log(this.router.url);
       this.router.url === '/search'
         ? this.setSearchValue()
         : this.router.navigate(['/search'], {
-            queryParams: { value: searchValue ? searchValue : 'default' },
+            queryParams: {
+              value: searchValue ? searchValue : 'default',
+              page: 1,
+            },
           });
     } else {
       this.isSearchBar = true;
