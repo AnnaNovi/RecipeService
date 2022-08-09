@@ -43,6 +43,7 @@ export class FilterPanelComponent implements OnInit, OnDestroy {
       });
     }
   }
+
   private setFilter(): Subscription {
     return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       const filter = params.get('categoryType');

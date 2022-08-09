@@ -11,14 +11,6 @@ import {
   from,
   mergeMap,
   skip,
-  of,
-  switchMap,
-  tap,
-  mergeAll,
-  mergeMapTo,
-  merge,
-  concatMap,
-  concat,
 } from 'rxjs';
 import { environment as env } from 'src/environments/environment.prod';
 import {
@@ -33,7 +25,7 @@ import {
 })
 export class RecipeByFilterService {
   activePage$: BehaviorSubject<number> = new BehaviorSubject(1);
-  filterListPages$: BehaviorSubject<number> = new BehaviorSubject(1);
+  totalQuantityOfPages$: BehaviorSubject<number> = new BehaviorSubject(1);
   private recipesSimilarList$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(
@@ -83,6 +75,8 @@ export class RecipeByFilterService {
     return this.recipesSimilarList$;
   }
 
+  getFilterRecipesListPages() {}
+
   getFilterRecipesList(
     filterType: string,
     filterValue: string,
@@ -93,7 +87,7 @@ export class RecipeByFilterService {
       mergeMap(
         (response: recipeByCategoryResponse): Observable<recipePreview[]> => {
           const pages = Math.ceil(response.meals.length / quantity);
-          this.filterListPages$.next(pages);
+          this.totalQuantityOfPages$.next(pages);
           return from(response.meals).pipe(
             skip(quantity * (page - 1)),
             take(quantity),
