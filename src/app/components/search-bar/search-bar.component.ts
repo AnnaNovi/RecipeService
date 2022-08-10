@@ -18,18 +18,35 @@ import { searchBarAnimation } from './search-bar.animation';
   animations: [searchBarAnimation],
 })
 export class SearchBarComponent implements AfterViewInit, OnDestroy {
-  isSearchBar = false;
-  searchBarForm = new FormGroup({
+  public isSearchBar = false;
+  public searchBarForm = new FormGroup({
     searchValue: new FormControl(''),
   });
+
+  @ViewChild('searchBarFormElement')
+  searchBarFormElement: ElementRef<HTMLFormElement> | null = null;
 
   constructor(
     private outsideClickService: OutsideClickService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
-  @ViewChild('searchBarFormElement')
-  searchBarFormElement: ElementRef<HTMLFormElement> | null = null;
+
+  public searchByValue() {
+    const searchValue = this.searchBarForm.value.searchValue;
+    if (this.isSearchBar && searchValue) {
+      this.router.url === '/search'
+        ? this.setSearchValue()
+        : this.router.navigate(['/search'], {
+            queryParams: {
+              value: searchValue ? searchValue : 'default',
+              page: 1,
+            },
+          });
+    } else {
+      this.isSearchBar = true;
+    }
+  }
 
   private setSearchValue(): Subscription {
     return this.activatedRoute.queryParamMap.subscribe(
@@ -47,22 +64,6 @@ export class SearchBarComponent implements AfterViewInit, OnDestroy {
           this.searchBarForm.patchValue({ searchValue: '' });
         }
       });
-  }
-
-  searchByValue() {
-    const searchValue = this.searchBarForm.value.searchValue;
-    if (this.isSearchBar && searchValue) {
-      this.router.url === '/search'
-        ? this.setSearchValue()
-        : this.router.navigate(['/search'], {
-            queryParams: {
-              value: searchValue ? searchValue : 'default',
-              page: 1,
-            },
-          });
-    } else {
-      this.isSearchBar = true;
-    }
   }
 
   ngAfterViewInit(): void {

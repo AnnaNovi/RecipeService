@@ -11,14 +11,6 @@ import {
   from,
   mergeMap,
   skip,
-  of,
-  switchMap,
-  tap,
-  mergeAll,
-  mergeMapTo,
-  merge,
-  concatMap,
-  concat,
 } from 'rxjs';
 import { environment as env } from 'src/environments/environment.prod';
 import {
@@ -32,29 +24,23 @@ import {
   providedIn: 'root',
 })
 export class RecipeByFilterService {
-  activePage$: BehaviorSubject<number> = new BehaviorSubject(1);
-  filterListPages$: BehaviorSubject<number> = new BehaviorSubject(1);
-  private recipesSimilarList$: BehaviorSubject<any> = new BehaviorSubject([]);
+  public activePage$: BehaviorSubject<number> = new BehaviorSubject(1);
+  public totalQuantityOfPages$: BehaviorSubject<number> = new BehaviorSubject(
+    1
+  );
+  private recipesSimilarList$: BehaviorSubject<recipePreview[] | null> =
+    new BehaviorSubject<recipePreview[] | null>(null);
 
   constructor(
     private http: HttpClient,
     private recipeByIdService: RecipeByIdService
   ) {}
 
-  private getRecipeByCategoryAPI(
-    type: string,
-    value: string
-  ): Observable<recipeByCategoryResponse> {
-    return this.http.get<any>(
-      `${env.BASE_URL}/filter.php?${type.slice(0, 1)}=${value}`
-    );
-  }
-
-  getSimilarRecipesList(
+  public getSimilarRecipesList(
     quantity: number,
     category: string
-  ): BehaviorSubject<recipe[]> {
-    if (!this.recipesSimilarList$.getValue().length) {
+  ): BehaviorSubject<recipePreview[] | null> {
+    if (!this.recipesSimilarList$.getValue()?.length) {
       this.getRecipeByCategoryAPI('category', category)
         .pipe(
           map((response: recipeByCategoryResponse): any => {
@@ -83,7 +69,7 @@ export class RecipeByFilterService {
     return this.recipesSimilarList$;
   }
 
-  getFilterRecipesList(
+  public getFilterRecipesList(
     filterType: string,
     filterValue: string,
     quantity: number
@@ -93,7 +79,7 @@ export class RecipeByFilterService {
       mergeMap(
         (response: recipeByCategoryResponse): Observable<recipePreview[]> => {
           const pages = Math.ceil(response.meals.length / quantity);
-          this.filterListPages$.next(pages);
+          this.totalQuantityOfPages$.next(pages);
           return from(response.meals).pipe(
             skip(quantity * (page - 1)),
             take(quantity),
@@ -111,6 +97,15 @@ export class RecipeByFilterService {
           );
         }
       )
+    );
+  }
+
+  private getRecipeByCategoryAPI(
+    type: string,
+    value: string
+  ): Observable<recipeByCategoryResponse> {
+    return this.http.get<recipeByCategoryResponse>(
+      `${env.BASE_URL}/filter.php?${type.slice(0, 1)}=${value}`
     );
   }
 }

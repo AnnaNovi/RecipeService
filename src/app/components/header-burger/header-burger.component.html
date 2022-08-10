@@ -12,7 +12,7 @@
 </header>
 
 <mat-sidenav-container [style.backgroundColor]="'transparent'">
-  <mat-sidenav #sidenav class="header__sidenav" role="navigation"> 
+  <mat-sidenav #sidenav class="header__sidenav" role="navigation">
     <nav class="header__navigation">
       <a
         routerLink=""
@@ -25,7 +25,7 @@
       >
       <a
         [routerLink]="['/recipes', 'default', 'default']"
-        [queryParams]="{page: 1}"
+        [queryParams]="{ page: 1 }"
         ariaCurrentWhenActive="page"
         class="header__link"
         [class.active]="isActiveRecipe | async"
@@ -37,7 +37,4 @@
   <mat-sidenav-content>
     <ng-content></ng-content>
   </mat-sidenav-content>
-
 </mat-sidenav-container>
-
-

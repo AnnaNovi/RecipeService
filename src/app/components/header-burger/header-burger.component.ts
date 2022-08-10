@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router, Event } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -8,9 +8,9 @@ import { filter, map } from 'rxjs';
   templateUrl: './header-burger.component.html',
   styleUrls: ['./header-burger.component.scss'],
 })
-export class HeaderBurgerComponent implements OnInit {
-  burgerState = false;
-  isActiveRecipe = this.router.events.pipe(
+export class HeaderBurgerComponent {
+  public burgerState = false;
+  public isActiveRecipe = this.router.events.pipe(
     filter(
       (event: Event): event is NavigationEnd => event instanceof NavigationEnd
     ),
@@ -23,9 +23,7 @@ export class HeaderBurgerComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
-
-  toggleSidenav(sidenav: MatSidenav): void {
+  public toggleSidenav(sidenav: MatSidenav): void {
     sidenav.toggle();
     this.burgerState = sidenav.opened;
   }

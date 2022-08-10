@@ -8,7 +8,7 @@ import { filter, map } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  isActiveRecipe = this.router.events.pipe(
+  public isActiveRecipe = this.router.events.pipe(
     filter(
       (event: Event): event is NavigationEnd => event instanceof NavigationEnd
     ),
@@ -18,5 +18,4 @@ export class HeaderComponent {
   );
 
   constructor(private router: Router) {}
-
 }

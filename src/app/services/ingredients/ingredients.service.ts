@@ -14,15 +14,12 @@ import {
   providedIn: 'root',
 })
 export class IngredientsService {
-  private ingredientsList$: BehaviorSubject<any> = new BehaviorSubject(null);
+  private ingredientsList$: BehaviorSubject<ingredients[] | null> =
+    new BehaviorSubject<ingredients[] | null>(null);
 
   constructor(private http: HttpClient) {}
 
-  private getIngredientsAPI$(): Observable<ingredientsNamesResponse> {
-    return this.http.get<any>(`${env.BASE_URL}/list.php?i=list`);
-  }
-
-  getIngredients$(): BehaviorSubject<ingredientsNamesResponseData[]> {
+  public getIngredients$(): BehaviorSubject<ingredients[] | null> {
     if (!this.ingredientsList$.getValue()) {
       this.getIngredientsAPI$()
         .pipe(
@@ -43,5 +40,11 @@ export class IngredientsService {
         });
     }
     return this.ingredientsList$;
+  }
+
+  private getIngredientsAPI$(): Observable<ingredientsNamesResponse> {
+    return this.http.get<ingredientsNamesResponse>(
+      `${env.BASE_URL}/list.php?i=list`
+    );
   }
 }

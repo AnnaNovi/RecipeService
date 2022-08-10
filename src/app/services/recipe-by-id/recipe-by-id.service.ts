@@ -5,7 +5,6 @@ import { recipeResponse, recipeResponseData } from 'src/app/models';
 import { FormatDataService } from '../format-recipe-data/format-recipe-data.service';
 import { environment as env } from 'src/environments/environment.prod';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -15,9 +14,6 @@ export class RecipeByIdService {
     private formatData: FormatDataService
   ) {}
 
-  private getRecipeByIdAPI(id: string | null): Observable<recipeResponse> {
-    return this.http.get<any>(`${env.BASE_URL}/lookup.php?i=${id}`);
-  }
   public getRecipeById(
     id: string | null,
     type: 'short' | 'full' = 'full'
@@ -30,5 +26,9 @@ export class RecipeByIdService {
         return this.formatData.format(recipe, type);
       })
     );
+  }
+
+  private getRecipeByIdAPI(id: string | null): Observable<recipeResponse> {
+    return this.http.get<recipeResponse>(`${env.BASE_URL}/lookup.php?i=${id}`);
   }
 }

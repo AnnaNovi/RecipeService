@@ -1,8 +1,4 @@
-import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -10,27 +6,16 @@ import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
-  public filterListPages: BehaviorSubject<number>;
+  @Input() activePage: number = 1;
+  @Input() totalQuantityOfPages: number = 1;
 
-  constructor(
-    private recipeByFilterService: RecipeByFilterService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.filterListPages = this.recipeByFilterService.filterListPages$;
+  @Output() newActivePage = new EventEmitter<number>();
+
+  public isActivePage(page: number) {
+    return page === this.activePage;
   }
 
-  isActivePage(page: number) {
-    return page === this.recipeByFilterService.activePage$.getValue();
+  public changePage(page: number) {
+    this.newActivePage.emit(page);
   }
-
-  changePage(page: number) {
-    this.recipeByFilterService.activePage$.next(page);
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: { page },
-      queryParamsHandling: 'merge',
-    });
-  }
-
 }

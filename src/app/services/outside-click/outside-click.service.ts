@@ -5,7 +5,9 @@ import { fromEvent, map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class OutsideClickService {
-  isContainElement(element: ElementRef<any> | null): Observable<boolean> {
+  public isContainElement(
+    element: ElementRef<any> | null
+  ): Observable<boolean> {
     return fromEvent(window, 'click').pipe(
       map((event: Event) => event.target),
       map((target: EventTarget | null) => {

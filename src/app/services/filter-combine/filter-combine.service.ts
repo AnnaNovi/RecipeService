@@ -14,9 +14,9 @@ export class FilterCombineService {
     private ingredientsService: IngredientsService
   ) {}
 
-  getFilterByType(
+  public getFilterByType(
     type: 'category' | 'area' | 'ingredient'
-  ): BehaviorSubject<any[]> {
+  ): BehaviorSubject<any[] | null> {
     switch (type) {
       case 'category':
         return this.categoriesService.getCategories$();

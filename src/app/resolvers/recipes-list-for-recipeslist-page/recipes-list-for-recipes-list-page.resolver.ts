@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {
   Resolve,
   RouterStateSnapshot,
-  ActivatedRouteSnapshot
+  ActivatedRouteSnapshot,
 } from '@angular/router';
-import { first, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { recipePreview } from 'src/app/models';
 import { RecipeRandomService } from 'src/app/services/recipe-random/recipe-random.service';
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
@@ -25,17 +25,11 @@ export class RecipesListForRecipesListPageResolver
   ): Observable<recipePreview[]> {
     const type = route.paramMap.get('categoryType');
     const value = route.paramMap.get('categoryValue');
-      
+
     if (type && value && value !== 'default') {
-      return this.recipeByFilterService.getFilterRecipesList(
-        type,
-        value,
-        16
-      );
+      return this.recipeByFilterService.getFilterRecipesList(type, value, 16);
     } else {
-      return this.recipeRandomService.getRandomRecipesList(
-        'recipesListPage'
-      );
+      return this.recipeRandomService.getRandomRecipesList('recipesListPage');
     }
   }
 }

@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnChanges,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-recipe-image',
@@ -11,15 +6,13 @@ import {
   styleUrls: ['./recipe-image.component.scss'],
 })
 export class RecipeImageComponent implements OnChanges {
+  public imageSrc = '';
+  public isFullImageLoaded = false;
+
   @Input() imageURL: string = '';
   @Input() title: string = '';
 
-  imageSrc = '';
-  isFullImageLoaded = false;
-
-  constructor() {}
-
-  ngOnChanges(): void {
+  private updateImageURL() {
     this.imageSrc = `${this.imageURL}/preview`;
     const img = new Image();
     img.src = this.imageURL;
@@ -29,4 +22,7 @@ export class RecipeImageComponent implements OnChanges {
     };
   }
 
+  ngOnChanges(): void {
+    this.updateImageURL();
+  }
 }

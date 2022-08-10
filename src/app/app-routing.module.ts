@@ -9,6 +9,7 @@ import { RecipeComponent } from './pages/recipe/recipe.component';
 import { RecipesListComponent } from './pages/recipes-list/recipes-list.component';
 import { SearchComponent } from './pages/search/search.component';
 import { RecipeByIdResolver } from './resolvers/recipe-by-id/recipe-by-id.resolver';
+import { RecipeBySearchResolver } from './resolvers/recipe-by-search/recipe-by-search.resolver';
 import { RecipesListForHomePageResolver } from './resolvers/recipes-list-for-home-page/recipes-list-for-home-page.resolver';
 import { RecipesListForRecipesListPageResolver } from './resolvers/recipes-list-for-recipeslist-page/recipes-list-for-recipes-list-page.resolver';
 
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
+    resolve: {
+      recipesList: RecipeBySearchResolver,
+    },
   },
   {
     path: 'notFound',
@@ -56,6 +61,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

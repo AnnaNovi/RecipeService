@@ -1,10 +1,12 @@
 <div class="pagination">
   <button
-    *appLoopForNumber="let page from filterListPages | async"
+    *appLoopForNumber="let page; from: totalQuantityOfPages"
     [ngClass]="{
-      'pagination__button': true,
-      'active': isActivePage(page)
+      pagination__button: true,
+      active: isActivePage(page)
     }"
     (click)="changePage(page)"
-  >{{ page }}</button>
+  >
+    {{ page }}
+  </button>
 </div>

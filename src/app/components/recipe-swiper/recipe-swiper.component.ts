@@ -1,11 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { BehaviorSubject, map, Subscription } from 'rxjs';
 
 import SwiperCore, { Pagination, Navigation, SwiperOptions } from 'swiper';
 
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 
-import { recipe } from 'src/app/models';
+import { recipe, recipePreview } from 'src/app/models';
+import { ActivatedRoute } from '@angular/router';
 
 SwiperCore.use([Pagination, Navigation]);
 
@@ -15,11 +16,12 @@ SwiperCore.use([Pagination, Navigation]);
   styleUrls: ['./recipe-swiper.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class RecipeSwiperComponent {
-  recipesSimilarList$: BehaviorSubject<recipe[]> =
-    this.recipeByFilterService.getSimilarRecipesList(9, 'Vegetarian');
+export class RecipeSwiperComponent implements OnDestroy, OnInit {
+  public recipesSimilarList$: BehaviorSubject<recipePreview[] | null> | null =
+    null;
+  private category: string = '';
 
-  config: SwiperOptions = {
+  public config: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 30,
     slidesPerGroup: 1,
@@ -40,5 +42,30 @@ export class RecipeSwiperComponent {
     },
   };
 
-  constructor(private recipeByFilterService: RecipeByFilterService) {}
+  constructor(
+    private recipeByFilterService: RecipeByFilterService,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  private getRecipeCategory(): Subscription {
+    return this.activatedRoute.data
+      .pipe(map((data) => data['recipeById']))
+      .subscribe((recipe: recipe) => {
+        this.category = recipe.category.toLowerCase();
+      });
+  }
+  private setRecipesSimilarList(): void {
+    this.recipesSimilarList$ = this.recipeByFilterService.getSimilarRecipesList(
+      9,
+      this.category
+    );
+  }
+
+  ngOnInit(): void {
+    this.getRecipeCategory();
+    this.setRecipesSimilarList();
+  }
+  ngOnDestroy(): void {
+    this.getRecipeCategory().unsubscribe();
+  }
 }

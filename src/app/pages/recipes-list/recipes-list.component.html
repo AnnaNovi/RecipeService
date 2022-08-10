@@ -5,4 +5,8 @@
     [recipe]="recipe"
   ></app-recipe-card>
 </section>
-<app-pagination></app-pagination>
+<app-pagination
+  [activePage]="activePage"
+  [totalQuantityOfPages]="totalQuantityOfPages"
+  (newActivePage)="changePage($event)"
+></app-pagination>

@@ -13,15 +13,12 @@ import {
   providedIn: 'root',
 })
 export class CategoriesService {
-  private categoriesList$: BehaviorSubject<any> = new BehaviorSubject(null);
+  private categoriesList$: BehaviorSubject<null | categories[]> =
+    new BehaviorSubject<null | categories[]>(null);
 
   constructor(private http: HttpClient) {}
 
-  private getCategoriesAPI$(): Observable<categoriesResponse> {
-    return this.http.get<any>(`${env.BASE_URL}/categories.php`);
-  }
-
-  getCategories$(): BehaviorSubject<categories[]> {
+  public getCategories$(): BehaviorSubject<categories[] | null> {
     if (!this.categoriesList$.getValue()) {
       this.getCategoriesAPI$()
         .pipe(
@@ -45,5 +42,9 @@ export class CategoriesService {
         });
     }
     return this.categoriesList$;
+  }
+
+  private getCategoriesAPI$(): Observable<categoriesResponse> {
+    return this.http.get<categoriesResponse>(`${env.BASE_URL}/categories.php`);
   }
 }

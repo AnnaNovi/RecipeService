@@ -9,7 +9,7 @@ import { CategoriesService } from 'src/app/services/categories/categories.servic
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-  categoriesList$: BehaviorSubject<categories[]> =
+  public categoriesList$: BehaviorSubject<categories[] | null> =
     this.categoriesService.getCategories$();
 
   constructor(private categoriesService: CategoriesService) {}
