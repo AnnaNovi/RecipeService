@@ -11,7 +11,6 @@ import {
   selector: '[appLoopForNumber]',
 })
 export class LoopForNumberDirective implements OnChanges {
-
   @Input() appLoopForNumberFrom!: number | null;
 
   constructor(
@@ -32,7 +31,6 @@ export class LoopForNumberDirective implements OnChanges {
           $implicit: index,
         });
       }
-
     }
   }
 }

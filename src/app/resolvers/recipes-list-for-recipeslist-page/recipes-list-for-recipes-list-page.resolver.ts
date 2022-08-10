@@ -4,7 +4,7 @@ import {
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { first, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { recipePreview } from 'src/app/models';
 import { RecipeRandomService } from 'src/app/services/recipe-random/recipe-random.service';
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';

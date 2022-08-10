@@ -10,16 +10,25 @@ import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-
   styleUrls: ['./recipes-list.component.scss'],
 })
 export class RecipesListComponent implements OnInit, OnDestroy {
-  recipesPreviewList$: Observable<recipePreview[]> =
+  public recipesPreviewList$: Observable<recipePreview[]> =
     this.activatedRoute.data.pipe(map((data) => data['recipesList']));
-  activePage: number = 1;
-  totalQuantityOfPages: number = 1;
+  public activePage: number = 1;
+  public totalQuantityOfPages: number = 1;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private recipeByFilterService: RecipeByFilterService
   ) {}
+
+  public changePage(page: number) {
+    this.recipeByFilterService.activePage$.next(page);
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { page },
+      queryParamsHandling: 'merge',
+    });
+  }
 
   private setActivePage(): Subscription {
     return this.recipeByFilterService.activePage$.subscribe((page: number) => {
@@ -32,15 +41,6 @@ export class RecipesListComponent implements OnInit, OnDestroy {
         this.totalQuantityOfPages = page;
       }
     );
-  }
-
-  changePage(page: number) {
-    this.recipeByFilterService.activePage$.next(page);
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: { page },
-      queryParamsHandling: 'merge',
-    });
   }
 
   ngOnInit(): void {

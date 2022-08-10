@@ -6,7 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./svg.component.scss'],
 })
 export class SVGComponent {
-  constructor() {}
-
   @Input() id: string | null = null;
 }

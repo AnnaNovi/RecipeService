@@ -10,17 +10,26 @@ import { RecipeBySearchService } from 'src/app/services/recipe-by-search/recipe-
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  recipesPreviewList$: Observable<recipePreview[]> | Observable<null> =
+  public recipesPreviewList$: Observable<recipePreview[]> | Observable<null> =
     this.activatedRoute.data.pipe(map((data) => data['recipesList']));
-  searchValue: string | null = null;
-  activePage: number = 1;
-  totalQuantityOfPages: number = 1;
+  public searchValue: string | null = null;
+  public activePage: number = 1;
+  public totalQuantityOfPages: number = 1;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private recipeBySearchService: RecipeBySearchService
   ) {}
+
+  public changePage(page: number) {
+    this.recipeBySearchService.activePage$.next(page);
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { page },
+      queryParamsHandling: 'merge',
+    });
+  }
 
   private setSearchValue() {
     return this.activatedRoute.queryParamMap.subscribe(
@@ -40,15 +49,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.totalQuantityOfPages = page;
       }
     );
-  }
-
-  changePage(page: number) {
-    this.recipeBySearchService.activePage$.next(page);
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: { page },
-      queryParamsHandling: 'merge',
-    });
   }
 
   ngOnInit() {

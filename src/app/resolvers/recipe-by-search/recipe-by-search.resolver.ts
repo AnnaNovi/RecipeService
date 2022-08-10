@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
-  Router,
   Resolve,
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { recipePreview } from 'src/app/models';
 import { RecipeBySearchService } from 'src/app/services/recipe-by-search/recipe-by-search.service';
 
@@ -18,7 +17,7 @@ export class RecipeBySearchResolver implements Resolve<recipePreview[] | null> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<recipePreview[]> | Observable<null> {
+  ): Observable<recipePreview[] | null> {
     const searchValue = route.queryParamMap.get('value');
     return this.recipeBySearchService.getSearchResultRecipesList(searchValue);
   }

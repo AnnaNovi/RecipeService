@@ -14,7 +14,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class FilterPanelComponent implements OnInit, OnDestroy {
   public filterForm!: FormGroup;
-  public filterResultList$!: Observable<categories[]>;
+  public filterResultList$!: Observable<categories[] | null>;
   public filterTypes: string[] = ['Default', 'Category', 'Area', 'Ingredient'];
 
   constructor(

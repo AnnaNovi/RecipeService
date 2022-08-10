@@ -9,9 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  recipesPreviewList$: Observable<recipePreview[]> =
+  public recipesPreviewList$: Observable<recipePreview[]> =
     this.activatedRoute.data.pipe(map((data) => data['recipesList']));
 
   constructor(private activatedRoute: ActivatedRoute) {}
-
 }

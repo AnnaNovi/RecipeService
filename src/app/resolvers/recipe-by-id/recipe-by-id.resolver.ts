@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
+  Resolve,
   RouterStateSnapshot,
-  ActivatedRouteSnapshot
+  ActivatedRouteSnapshot,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { RecipeByIdService } from 'src/app/services/recipe-by-id/recipe-by-id.service';
 
 @Injectable({

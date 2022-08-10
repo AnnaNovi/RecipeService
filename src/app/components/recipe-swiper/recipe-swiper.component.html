@@ -1,14 +1,9 @@
 <swiper
-    [config]="config"
-    class="swiper"
-    *ngIf="recipesSimilarList$ | async as recipesSimilarList"
-  >
-    <ng-template
-      swiperSlide
-      *ngFor="let recipe of recipesSimilarList"
-    >
-      <app-recipe-card 
-        [recipe]="recipe"
-      ></app-recipe-card>
-    </ng-template>
+  [config]="config"
+  class="swiper"
+  *ngIf="recipesSimilarList$ | async as recipesSimilarList"
+>
+  <ng-template swiperSlide *ngFor="let recipe of recipesSimilarList">
+    <app-recipe-card [recipe]="recipe"></app-recipe-card>
+  </ng-template>
 </swiper>

@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  public categoriesList$: BehaviorSubject<categories[]> =
+  public categoriesList$: BehaviorSubject<categories[] | null> =
     this.categoriesService.getCategories$();
 
   constructor(private categoriesService: CategoriesService) {}

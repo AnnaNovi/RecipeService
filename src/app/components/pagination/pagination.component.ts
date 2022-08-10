@@ -6,18 +6,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
-  constructor() {}
-
   @Input() activePage: number = 1;
   @Input() totalQuantityOfPages: number = 1;
 
   @Output() newActivePage = new EventEmitter<number>();
 
-  isActivePage(page: number) {
+  public isActivePage(page: number) {
     return page === this.activePage;
   }
 
-  changePage(page: number) {
+  public changePage(page: number) {
     this.newActivePage.emit(page);
   }
 }

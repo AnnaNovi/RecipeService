@@ -11,18 +11,18 @@ import { recipe } from 'src/app/models';
   styleUrls: ['./recipe.component.scss'],
 })
 export class RecipeComponent {
-  recipe: Observable<recipe> = this.activatedRoute.data.pipe(
+  public recipe: Observable<recipe> = this.activatedRoute.data.pipe(
     map((data) => data['recipeById'])
   );
-  descriptionView = 'ingredients';
+  public descriptionView = 'ingredients';
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
-  changeDescriptionView(event: Event) {
+  public changeDescriptionView(event: Event) {
     const type = event.target as HTMLButtonElement;
     this.descriptionView = type.innerHTML.toLowerCase().trim();
   }
-  isActiveButton(type: string) {
+  public isActiveButton(type: string) {
     return this.descriptionView === type.toLowerCase();
   }
 }

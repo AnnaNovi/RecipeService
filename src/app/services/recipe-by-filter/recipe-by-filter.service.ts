@@ -24,29 +24,23 @@ import {
   providedIn: 'root',
 })
 export class RecipeByFilterService {
-  activePage$: BehaviorSubject<number> = new BehaviorSubject(1);
-  totalQuantityOfPages$: BehaviorSubject<number> = new BehaviorSubject(1);
-  private recipesSimilarList$: BehaviorSubject<any> = new BehaviorSubject([]);
+  public activePage$: BehaviorSubject<number> = new BehaviorSubject(1);
+  public totalQuantityOfPages$: BehaviorSubject<number> = new BehaviorSubject(
+    1
+  );
+  private recipesSimilarList$: BehaviorSubject<recipePreview[] | null> =
+    new BehaviorSubject<recipePreview[] | null>(null);
 
   constructor(
     private http: HttpClient,
     private recipeByIdService: RecipeByIdService
   ) {}
 
-  private getRecipeByCategoryAPI(
-    type: string,
-    value: string
-  ): Observable<recipeByCategoryResponse> {
-    return this.http.get<any>(
-      `${env.BASE_URL}/filter.php?${type.slice(0, 1)}=${value}`
-    );
-  }
-
-  getSimilarRecipesList(
+  public getSimilarRecipesList(
     quantity: number,
     category: string
-  ): BehaviorSubject<recipe[]> {
-    if (!this.recipesSimilarList$.getValue().length) {
+  ): BehaviorSubject<recipePreview[] | null> {
+    if (!this.recipesSimilarList$.getValue()?.length) {
       this.getRecipeByCategoryAPI('category', category)
         .pipe(
           map((response: recipeByCategoryResponse): any => {
@@ -75,9 +69,7 @@ export class RecipeByFilterService {
     return this.recipesSimilarList$;
   }
 
-  getFilterRecipesListPages() {}
-
-  getFilterRecipesList(
+  public getFilterRecipesList(
     filterType: string,
     filterValue: string,
     quantity: number
@@ -105,6 +97,15 @@ export class RecipeByFilterService {
           );
         }
       )
+    );
+  }
+
+  private getRecipeByCategoryAPI(
+    type: string,
+    value: string
+  ): Observable<recipeByCategoryResponse> {
+    return this.http.get<recipeByCategoryResponse>(
+      `${env.BASE_URL}/filter.php?${type.slice(0, 1)}=${value}`
     );
   }
 }

@@ -13,15 +13,13 @@ import {
   providedIn: 'root',
 })
 export class AreasService {
-  private areasList$: BehaviorSubject<any> = new BehaviorSubject(null);
+  private areasList$: BehaviorSubject<areas[] | null> = new BehaviorSubject<
+    areas[] | null
+  >(null);
 
   constructor(private http: HttpClient) {}
 
-  private getAreasAPI$(): Observable<areasNamesResponse> {
-    return this.http.get<areasNamesResponse>(`${env.BASE_URL}/list.php?a=list`);
-  }
-
-  getAreas$(): BehaviorSubject<areas[]> {
+  public getAreas$(): BehaviorSubject<areas[] | null> {
     if (!this.areasList$.getValue()) {
       this.getAreasAPI$()
         .pipe(
@@ -38,5 +36,9 @@ export class AreasService {
         });
     }
     return this.areasList$;
+  }
+
+  private getAreasAPI$(): Observable<areasNamesResponse> {
+    return this.http.get<areasNamesResponse>(`${env.BASE_URL}/list.php?a=list`);
   }
 }

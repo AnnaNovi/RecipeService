@@ -32,18 +32,10 @@ export class RecipeBySearchService {
     private formatData: FormatDataService
   ) {}
 
-  private getRecipeBySearchAPI(
-    value: string | null
-  ): Observable<recipeResponse> {
-    return this.http.get<recipeResponse>(
-      `${env.BASE_URL}/search.php?s=${value}`
-    );
-  }
-
-  getSearchResultRecipesList(
+  public getSearchResultRecipesList(
     value: string | null,
     quantity: number = 16
-  ): Observable<recipePreview[]> | Observable<null> {
+  ): Observable<recipePreview[] | null> {
     const page = this.activePage$.getValue();
     return this.getRecipeBySearchAPI(value).pipe(
       switchMap((response: recipeResponse): Observable<recipeResponseData> => {
@@ -78,6 +70,14 @@ export class RecipeBySearchService {
       catchError((error: any) => {
         return of(error);
       })
+    );
+  }
+
+  private getRecipeBySearchAPI(
+    value: string | null
+  ): Observable<recipeResponse> {
+    return this.http.get<recipeResponse>(
+      `${env.BASE_URL}/search.php?s=${value}`
     );
   }
 }
