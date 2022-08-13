@@ -32,6 +32,8 @@ import { MaterialModule } from './modules/material/material.module';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SVGComponent } from './components/svg/svg.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { RecipesSectionComponent } from './components/recipes-section/recipes-section.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { SVGComponent } from './components/svg/svg.component';
     SearchComponent,
     SearchBarComponent,
     SVGComponent,
+    FavoritesComponent,
+    RecipesSectionComponent,
   ],
   imports: [
     BrowserModule,
