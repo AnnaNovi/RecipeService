@@ -1,6 +1,3 @@
-<section class="recipeRandomSection">
-  <app-recipe-card
-    *ngFor="let recipe of recipesPreviewList$ | async"
-    [recipe]="recipe"
-  ></app-recipe-card>
-</section>
+<app-recipes-section
+  [recipes]="recipesPreviewList$ | async"
+></app-recipes-section>

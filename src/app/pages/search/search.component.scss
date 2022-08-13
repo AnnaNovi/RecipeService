@@ -1,11 +1,5 @@
 @import "~/src/variables.scss";
 
-.recipeList {
-  @include recipeSection;
-  margin-top: 28px;
-  margin-bottom: 28px;
-}
-
 .emptySearchTitle {
   text-align: center;
   font-weight: 700;
