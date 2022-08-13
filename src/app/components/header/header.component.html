@@ -21,4 +21,11 @@
   <div class="header__searchBar">
     <app-search-bar></app-search-bar>
   </div>
+  <a
+    [routerLink]="['/favorites']"
+    ariaCurrentWhenActive="page"
+    class="header__favorite"
+  >
+    <app-svg id="favorite"></app-svg>
+  </a>
 </header>
