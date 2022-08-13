@@ -1,11 +1,8 @@
 <h1>{{ 'Search by request "' + searchValue + '"' }}</h1>
 <div *ngIf="recipesPreviewList$ | async; else emptySearch">
-  <section class="recipeList">
-    <app-recipe-card
-      *ngFor="let recipe of recipesPreviewList$ | async"
-      [recipe]="recipe"
-    ></app-recipe-card>
-  </section>
+  <app-recipes-section
+    [recipes]="recipesPreviewList$ | async"
+  ></app-recipes-section>
   <app-pagination
     [activePage]="activePage"
     [totalQuantityOfPages]="totalQuantityOfPages"
