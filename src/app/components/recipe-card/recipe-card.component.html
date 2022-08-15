@@ -22,4 +22,10 @@
       >
     </small>
   </div>
+  <button
+    [ngClass]="{ recipeCard__favorite: true, active: isFavorite }"
+    (click)="toggleFavorite(recipe.id)"
+  >
+    <app-svg id="favorite"></app-svg>
+  </button>
 </div>
