@@ -1,0 +1,10 @@
+<div *ngIf="recipesPreviewList$ | async; else emptyFavorites">
+  <app-recipes-section
+    [recipes]="recipesPreviewList$ | async"
+  ></app-recipes-section>
+</div>
+<ng-template #emptyFavorites>
+  <div class="emptyFavorites">
+    <h1 class="emptyFavoritesTitle">No favorites yet</h1>
+  </div>
+</ng-template>
