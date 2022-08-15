@@ -1,0 +1,24 @@
+@import "~/src/variables.scss";
+
+.emptyFavorites {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.emptyFavoritesTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 28px;
+  color: $GREEN;
+  letter-spacing: 0.1em;
+
+  @media (max-width: 768px) {
+    font-size: 38px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 26px;
+  }
+}
