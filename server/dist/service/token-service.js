@@ -37,5 +37,35 @@ class TokenService {
             return token;
         });
     }
+    static removeToken(refreshToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const tokenData = token_model_1.TokenModel.deleteOne({ refreshToken });
+            return tokenData;
+        });
+    }
+    static findToken(refreshToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const tokenData = token_model_1.TokenModel.findOne({ refreshToken });
+            return tokenData;
+        });
+    }
+    static validateAccessToken(token) {
+        try {
+            const userData = jsonwebtoken_1.default.verify(token, process.env.JWT_ACCESS_SECRET || '');
+            return userData;
+        }
+        catch (error) {
+            return null;
+        }
+    }
+    static validateRefreshToken(token) {
+        try {
+            const userData = jsonwebtoken_1.default.verify(token, process.env.JWT_REFRESH_SECRET || '');
+            return userData;
+        }
+        catch (error) {
+            return null;
+        }
+    }
 }
 exports.TokenService = TokenService;

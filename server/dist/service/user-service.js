@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const user_model_1 = require("../models/user-model");
-const mail_service_1 = require("./mail-service");
 const token_service_1 = require("./token-service");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const uuid_1 = require("uuid");
@@ -32,13 +31,57 @@ class UserService {
             const user = yield user_model_1.UserModel.create({
                 email,
                 password: hashPassword,
-                activationLink,
             });
-            yield mail_service_1.MailService.sendActivationMain(email, activationLink);
             const userDto = new user_dto_1.UserDto(user);
             const tokens = token_service_1.TokenService.generateToken(Object.assign({}, userDto));
             yield token_service_1.TokenService.saveToken(userDto.id, tokens.refreshToken);
             return Object.assign(Object.assign({}, tokens), { user: userDto });
+        });
+    }
+    static login(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield user_model_1.UserModel.findOne({ email });
+            if (!user) {
+                throw api_error_1.ApiError.BadRequest(`User with such email as ${email} doesn't exist.`);
+            }
+            const isPasswordEqual = yield bcrypt_1.default.compare(password, user.password);
+            if (!isPasswordEqual) {
+                throw api_error_1.ApiError.BadRequest(`Wrong password`);
+            }
+            const userDto = new user_dto_1.UserDto(user);
+            const tokens = token_service_1.TokenService.generateToken(Object.assign({}, userDto));
+            yield token_service_1.TokenService.saveToken(userDto.id, tokens.refreshToken);
+            return Object.assign(Object.assign({}, tokens), { user: userDto });
+        });
+    }
+    static logout(refreshToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const token = yield token_service_1.TokenService.removeToken(refreshToken);
+            return token;
+        });
+    }
+    static refresh(refreshToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!refreshToken) {
+                throw api_error_1.ApiError.UnauthorizedError();
+            }
+            const userData = token_service_1.TokenService.validateRefreshToken(refreshToken);
+            const tokenFromDb = yield token_service_1.TokenService.findToken(refreshToken);
+            if (!userData || !tokenFromDb) {
+                throw api_error_1.ApiError.UnauthorizedError();
+            }
+            //@ts-expect-error
+            const user = yield user_model_1.UserModel.findById(tokenFromDb.id);
+            const userDto = new user_dto_1.UserDto(user);
+            const tokens = token_service_1.TokenService.generateToken(Object.assign({}, userDto));
+            yield token_service_1.TokenService.saveToken(userDto.id, tokens.refreshToken);
+            return Object.assign(Object.assign({}, tokens), { user: userDto });
+        });
+    }
+    static getAllUsers() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const users = yield user_model_1.UserModel.find();
+            return users;
         });
     }
 }
