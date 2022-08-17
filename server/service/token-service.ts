@@ -33,4 +33,30 @@ export class TokenService {
     const token = await TokenModel.create({ user: userId, refreshToken });
     return token;
   }
+
+  public static async removeToken(refreshToken: string) {
+    const tokenData = TokenModel.deleteOne({ refreshToken });
+    return tokenData;
+  }
+  public static async findToken(refreshToken: string) {
+    const tokenData = TokenModel.findOne({ refreshToken });
+    return tokenData;
+  }
+
+  public static validateAccessToken(token: string) {
+    try {
+      const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET || '');
+      return userData;
+    } catch (error) {
+      return null;
+    }
+  }
+  public static validateRefreshToken(token: string) {
+    try {
+      const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET || '');
+      return userData;
+    } catch (error) {
+      return null;
+    }
+  }
 }
