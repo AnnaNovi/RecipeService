@@ -21,6 +21,9 @@
   <div class="header__searchBar">
     <app-search-bar></app-search-bar>
   </div>
+  <button class="header__person" (click)="openAuthModal()">
+    <app-svg id="person"></app-svg>
+  </button>
   <a
     [routerLink]="['/favorites']"
     ariaCurrentWhenActive="page"
