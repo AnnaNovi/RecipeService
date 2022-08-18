@@ -34,6 +34,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SVGComponent } from './components/svg/svg.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { RecipesSectionComponent } from './components/recipes-section/recipes-section.component';
+import { ModalAuthComponent } from './components/modals/modal-auth/modal-auth.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { RecipesSectionComponent } from './components/recipes-section/recipes-se
     SVGComponent,
     FavoritesComponent,
     RecipesSectionComponent,
+    ModalAuthComponent,
   ],
   imports: [
     BrowserModule,

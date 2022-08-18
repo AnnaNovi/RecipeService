@@ -4,10 +4,26 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, MatSidenavModule, MatButtonModule, LayoutModule],
-  exports: [CommonModule, MatSidenavModule, MatButtonModule, LayoutModule],
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    MatButtonModule,
+    LayoutModule,
+    MatDialogModule,
+    MatFormFieldModule,
+  ],
+  exports: [
+    CommonModule,
+    MatSidenavModule,
+    MatButtonModule,
+    LayoutModule,
+    MatDialogModule,
+    MatFormFieldModule,
+  ],
 })
 export class MaterialModule {}
