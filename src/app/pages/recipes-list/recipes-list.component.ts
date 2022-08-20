@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, Subscription } from 'rxjs';
-import { recipePreview } from 'src/app/models';
+import { recipePreview } from 'src/app/models/recipe.model';
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 
 @Component({

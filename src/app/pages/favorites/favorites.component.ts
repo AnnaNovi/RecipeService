@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, map, Subscription } from 'rxjs';
-import { recipePreview } from 'src/app/models';
+import { recipePreview } from 'src/app/models/recipe.model';
 import { FavoritesService } from 'src/app/services/favorites/favorites.service';
 
 @Component({

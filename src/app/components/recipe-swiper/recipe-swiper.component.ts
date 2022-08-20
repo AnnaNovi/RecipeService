@@ -5,7 +5,7 @@ import SwiperCore, { Pagination, Navigation, SwiperOptions } from 'swiper';
 
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 
-import { recipe, recipePreview } from 'src/app/models';
+import { recipe, recipePreview } from 'src/app/models/recipe.model';
 import { ActivatedRoute } from '@angular/router';
 
 SwiperCore.use([Pagination, Navigation]);

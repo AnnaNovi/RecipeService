@@ -16,7 +16,7 @@ import {
   recipePreview,
   recipeResponse,
   recipeResponseData,
-} from 'src/app/models';
+} from 'src/app/models/recipe.model';
 import { environment as env } from 'src/environments/environment.prod';
 import { FormatDataService } from '../format-recipe-data/format-recipe-data.service';
 

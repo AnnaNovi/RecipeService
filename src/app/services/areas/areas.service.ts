@@ -3,11 +3,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from 'src/environments/environment';
 
-import {
-  areasNamesResponse,
-  areasNamesResponseData,
-  areas,
-} from 'src/app/models';
+import { areasNamesResponse, areas } from 'src/app/models/area.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +20,7 @@ export class AreasService {
       this.getAreasAPI$()
         .pipe(
           map((response: areasNamesResponse): areas[] =>
-            response.meals.map((area: areasNamesResponseData) => {
+            response.meals.map((area) => {
               return {
                 title: area.strArea,
               };

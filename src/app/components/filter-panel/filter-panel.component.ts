@@ -3,7 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { FilterCombineService } from 'src/app/services/filter-combine/filter-combine.service';
 import { RecipeByFilterService } from 'src/app/services/recipe-by-filter/recipe-by-filter.service';
 
-import { categories } from 'src/app/models';
+import { categories } from 'src/app/models/category.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 

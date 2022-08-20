@@ -5,7 +5,7 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { recipePreview } from 'src/app/models';
+import { recipePreview } from 'src/app/models/recipe.model';
 import { RecipeBySearchService } from 'src/app/services/recipe-by-search/recipe-by-search.service';
 
 @Injectable({

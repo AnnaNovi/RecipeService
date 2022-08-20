@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { recipeResponseData, recipePreview, recipe } from 'src/app/models';
+import {
+  recipeResponseData,
+  recipePreview,
+  recipe,
+} from 'src/app/models/recipe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +13,7 @@ export class FormatDataService {
   public format(
     recipe: recipeResponseData,
     type: 'short' | 'full' = 'full'
-  ): any {
+  ): recipePreview | recipe {
     const ingredientsArray = new Map();
     const tags = recipe.strTags ? recipe.strTags.split(',') : null;
     const shortType: recipePreview = {

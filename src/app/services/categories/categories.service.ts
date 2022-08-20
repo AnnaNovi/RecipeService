@@ -7,7 +7,7 @@ import {
   categories,
   categoriesResponse,
   categoriesResponseData,
-} from '../../models';
+} from 'src/app/models/category.model';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { recipe, recipePreview, recipeResponseData } from 'src/app/models';
+import {
+  recipe,
+  recipePreview,
+  recipeResponseData,
+} from 'src/app/models/recipe.model';
 
 import { FormatDataService } from './format-recipe-data.service';
 
@@ -19,7 +23,7 @@ describe('FormatDataService', () => {
       strDrinkAlternate: null,
       strCategory: 'Pork',
       strArea: 'American',
-      strInstructions: "\r\nServes 2\r\n\r\n\r\n1. \r\n\r\nAdjust racks...",
+      strInstructions: '\r\nServes 2\r\n\r\n\r\n1. \r\n\r\nAdjust racks...',
       strMealThumb:
         'https://www.themealdb.com/images/media/meals/h3ijwo1581013377.jpg',
       strTags: null,
@@ -114,7 +118,7 @@ describe('FormatDataService', () => {
 
     const resultEmpty = formatDataService.format(recipe);
     expect(expectedFullRecipe)
-      .withContext('type isn\'t set')
+      .withContext("type isn't set")
       .toEqual(resultEmpty);
   });
 
@@ -122,5 +126,5 @@ describe('FormatDataService', () => {
     recipe.strTags = 'Tart,Baking';
     const result = formatDataService.format(recipe, 'full');
     expect(result.tags).toEqual(['Tart', 'Baking']);
-  })
+  });
 });

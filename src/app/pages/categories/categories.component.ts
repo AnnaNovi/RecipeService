@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { categories } from 'src/app/models';
+import { categories } from 'src/app/models/category.model';
 import { CategoriesService } from 'src/app/services/categories/categories.service';
 
 @Component({
