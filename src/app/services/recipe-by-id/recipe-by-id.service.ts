@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { recipeResponse, recipeResponseData } from 'src/app/models';
+import {
+  recipeResponse,
+  recipeResponseData,
+} from 'src/app/models/recipe.model';
 import { FormatDataService } from '../format-recipe-data/format-recipe-data.service';
 import { environment as env } from 'src/environments/environment.prod';
 

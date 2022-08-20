@@ -18,7 +18,7 @@ import {
   recipe,
   recipeByCategoryResponse,
   recipeByCategoryResponseData,
-} from 'src/app/models';
+} from 'src/app/models/recipe.model';
 
 @Injectable({
   providedIn: 'root',

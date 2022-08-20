@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { categories } from 'src/app/models';
+import { categories } from 'src/app/models/category.model';
 import { categoryCardAnimation } from './category-card.animation';
 
 @Component({

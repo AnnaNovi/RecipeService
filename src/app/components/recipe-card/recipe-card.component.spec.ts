@@ -1,8 +1,8 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { recipePreview } from 'src/app/models';
-import {RouterTestingModule} from '@angular/router/testing';
+import { recipePreview } from 'src/app/models/recipe.model';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { RecipeCardComponent } from './recipe-card.component';
 
@@ -22,8 +22,9 @@ describe('RecipeCardComponent', () => {
     const expectedRecipeAsInput: recipePreview = {
       id: '52767',
       title: 'Bakewell tart',
-      tags: ['Tart','Baking','Alcoholic'],
-      imageURL: 'https:\/\/www.themealdb.com\/images\/media\/meals\/wyrqqq1468233628.jpg',
+      tags: ['Tart', 'Baking', 'Alcoholic'],
+      imageURL:
+        'https://www.themealdb.com/images/media/meals/wyrqqq1468233628.jpg',
     };
     component.recipe = expectedRecipeAsInput;
 
@@ -45,7 +46,7 @@ describe('RecipeCardComponent', () => {
     );
     expect(recipeCardTagsList).toBeTruthy();
   });
-  it('shouldn\'t render div.recipeCard__tagsList if recipe.tags is null', () => {
+  it("shouldn't render div.recipeCard__tagsList if recipe.tags is null", () => {
     component.recipe.tags = null;
     fixture.detectChanges();
     const recipeCardTagsList: DebugElement = fixture.debugElement.query(
@@ -59,12 +60,14 @@ describe('RecipeCardComponent', () => {
     );
     const recipeTagsLength = component.recipe.tags!.length;
 
-    expect(recipeCardTags.length).withContext('should have 3 tags').toEqual(recipeTagsLength);
+    expect(recipeCardTags.length)
+      .withContext('should have 3 tags')
+      .toEqual(recipeTagsLength);
     recipeCardTags.forEach((element: DebugElement, index: number) => {
       expect(element.nativeElement.textContent).toContain(
         component.recipe.tags![index]
       );
-    })
+    });
   });
   it('should render title with recipe.id at routerLink', () => {
     const titleHref = fixture.debugElement

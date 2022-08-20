@@ -11,7 +11,7 @@ import {
   toArray,
   of,
 } from 'rxjs';
-import { recipePreview } from 'src/app/models';
+import { recipePreview } from 'src/app/models/recipe.model';
 
 @Injectable({
   providedIn: 'root',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-import { recipePreview } from 'src/app/models';
+import { recipePreview } from 'src/app/models/recipe.model';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-home',

@@ -8,7 +8,7 @@ import {
   ingredients,
   ingredientsNamesResponse,
   ingredientsNamesResponseData,
-} from 'src/app/models';
+} from 'src/app/models/ingredient.model';
 
 @Injectable({
   providedIn: 'root',
